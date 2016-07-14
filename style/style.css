@@ -1,0 +1,440 @@
+/* styles from pop.css */
+.green{
+  background-color: green;
+}
+.red{
+  background-color: red;
+}
+.frameColor{
+  border-color: #b0b0b0;
+}
+
+/* header */
+.popup .modal-header{
+  background-color: #1677cb;
+  height: 60px;
+  color: #fff;
+}
+.popup .modal-header .close{
+  color: #fff;
+}
+
+select::-ms-expand {
+  display: none;
+}
+select.form-control{
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: transparent url("../images/arrow-down-1.png") no-repeat;
+  background-position: 99% center;
+}
+
+
+/* modal body */
+.modal-dialog{
+  min-width: 600px;
+  width: 600px;
+  margin: auto;
+}
+.modal-body{
+  min-height: 550px;
+}
+
+.popup .modal-body.left-menu{
+  background-color: #f6f6f6;
+}
+.popup .modal-body .modal-body-cont{
+  padding-top: 20px;
+}
+.popup .disabled-input,
+.general_settings_form_cont .disabled-input{
+  background-color: #f5f8f9 !important;
+}
+
+.popup form label{
+  font-size: 12px;
+  margin-bottom: 15px;
+  color:#444444;
+}
+.popup form label:first-letter{
+  text-transform: capitalize;
+}
+.popup form textarea,
+.general_settings_form_cont textarea{
+  resize: none;
+  height: 80px;
+  border-color: #b0b0b0;
+}
+
+/* footer*/
+.popup .modal-footer{
+  background-color: #f6f6f6;
+  height: 60px;
+  padding: 10px 20px 0px 0px;
+}
+.popup .button-save{
+  height: 40px;
+  min-width: 80px;
+}
+.popup .modal-footer .button-close{
+  border: 1px solid #b0b0b0;
+  color: #444444;
+  height: 40px;
+}
+.popup .modal-footer button{
+  margin-left: 10px;
+}
+.popup button:focus{
+  outline: none !important;
+  border: 0px;
+}
+.popup  .modal-header .title h4{
+  margin-top: 4px;
+}
+.popup .button-activate{
+  height: 40px;
+  width: inherit;
+}
+.popup .linked-ticket-count{
+  padding-top: 5px;
+}
+.popup .linked-ticket-count span{
+  width: 25px;
+  height: 20px;
+  border-radius: 3px;
+  background-color: #1677cb;
+  font-size: 13px;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+}
+.popup .linked-ticket-count a{
+  text-decoration: none;
+  color: #888888;
+  font-weight: bold;
+}
+
+
+.popup .checkbox-icon {
+  margin-right: 10px;
+}
+.btn-blue.btn-default[disabled] {
+  background-color: #337ab7 !important;
+}
+.file-list span{
+  display: inline-block !important;
+}
+.popup.new-tv-session .modal-body{
+  padding: 20px 10px 10px 0px;
+}
+.popup.organisation-modal .org-data,
+.popup.customer-data-modal .custom-data{
+  padding-top: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.popup .org-data,
+.popup .custom-data{
+  margin: 0 15px;
+  background: #fff;
+  border: 0;
+  color: #888888;
+}
+
+.popup .org-data .row,
+.popup .custom-data .row{
+  margin-bottom: 20px;
+}
+
+.corsor_change:hover{
+  cursor: pointer;
+}
+
+/* Vertical Seperator */
+.vertical-seperator{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+.modal-450, .modal-450 .modal-body {
+  min-height: 460px !important;
+  max-height: 650px;
+}
+.textarea-margin {
+  margin-top: 10px;
+}
+.modal-body .title{
+  color: #146bc6;
+  font-weight: bolder;
+}
+.modal-body .stafftitle{
+  color: #146bc6;
+  font-weight: bolder;
+}
+.modal-body .general-settings-hr1 {
+  border-bottom: 1px solid #ccc;
+  margin: 15px 0 15px 0;
+}
+
+.popup .question-mark {
+  background: url('../images/sprite.png') left -183px top -687px;
+  width: 26px;
+  height: 26px;
+  cursor:pointer;
+}
+
+#templateSubject {
+  height: 340px;
+}
+
+
+/* styles from ticket_create.css */
+.popup.ticket-create-popup .modal-body{
+  max-height: 360px;
+  padding: 0 30px 0 30px;
+}
+
+.tv-requester-create-addon {
+  background: transparent;
+}
+
+.create-file-upload {
+  margin-top: 20px;
+}
+
+#ticket-create .description-help-block {
+  margin-top: 45px;
+}
+
+
+.nomargin {
+  margin: 0 !important;
+}
+#check-tick {
+  padding: 10px;
+}
+
+.checkbox-icon.checked{
+  float: left;
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/sprite.png");
+  background-position: -31px -208px;
+  background-position-x: -31px;
+  background-position-y: -208px;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  cursor: pointer;
+}
+.checkbox-icon.unchecked{
+  float: left;
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/sprite.png");
+  background-position: -8px -208px;
+  background-position-x: -8px;
+  background-position-y: -208px;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  cursor: pointer;
+}
+
+.btn-white {
+  border: 1px solid #EBEBEB;
+  border-radius: 25px;
+  color: #444444;
+  background: white;
+}
+
+
+/* from login.css */
+
+.checkbox-input{
+  position: absolute;
+  left: -9999%;
+  width: 0;
+  height: 0;
+}
+
+
+/* from replyList.css */
+.btn-reply-attachment {
+  padding: 6px 16px 6px 16px;
+  background: #f6f6f6 ;
+
+  width: 50px;
+  height: 40px;
+  background-image: url("../images/file_icon.png");
+  background-position: 42% 7px;
+  background-repeat: no-repeat;
+}
+
+
+/* from configuration.css */
+
+.btn-blue {
+  background: #1677ca;
+  color: #fff;
+  border: 0;
+}
+
+.btn-blue:hover {
+  color: #fff;
+  background: #2D84D0; /* from global css */
+}
+
+
+.modal-footer {
+  margin-top: 10px;
+}
+
+.custom-field {
+  height: 75px;
+}
+
+.upload-element {
+  margin-top: 40px;
+}
+
+
+
+
+
+
+/*************** SCROLLBAR BASE CSS ***************/
+.scroll-wrapper {
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: relative;
+}
+.scroll-wrapper > .scroll-content {
+  border: none !important;
+  box-sizing: content-box !important;
+  height: auto;
+  left: 0;
+  margin: 0;
+  max-height: none;
+  max-width: none !important;
+  overflow: scroll !important;
+  padding: 0;
+  position: relative !important;
+  top: 0;
+  width: auto !important;
+}
+.scroll-wrapper > .scroll-content::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.scroll-element {
+  display: none;
+}
+.scroll-element, .scroll-element div {
+  box-sizing: content-box;
+}
+.scroll-element.scroll-x.scroll-scrollx_visible,
+.scroll-element.scroll-y.scroll-scrolly_visible {
+  display: block;
+}
+.scroll-element .scroll-bar,
+.scroll-element .scroll-arrow {
+  cursor: default;
+}
+.scroll-textarea {
+  border: 1px solid #cccccc;
+  border-top-color: #999999;
+}
+.scroll-textarea > .scroll-content {
+  overflow: hidden !important;
+}
+.scroll-textarea > .scroll-content > textarea {
+  border: none !important;
+  box-sizing: border-box;
+  height: 100% !important;
+  margin: 0;
+  max-height: none !important;
+  max-width: none !important;
+  overflow: scroll !important;
+  outline: none;
+  padding: 2px;
+  position: relative !important;
+  top: 0;
+  width: 100% !important;
+}
+.scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+
+/*************** SIMPLE INNER SCROLLBAR ***************/
+
+.scroll-element,
+.scroll-element div
+{
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 10;
+}
+.scroll-element div {
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.scroll-element.scroll-x {
+  bottom: 2px;
+  height: 8px;
+  left: 0;
+  width: 100%;
+}
+.scroll-element.scroll-y {
+  height: 99%;
+  right: 3px;
+  top: 1px;
+  width: 8px;
+}
+.scroll-element .scroll-element_outer {
+  overflow: hidden;
+}
+.scroll-element .scroll-element_outer,
+.scroll-element .scroll-element_track,
+.scroll-element .scroll-bar {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+.scroll-element .scroll-element_track,
+.scroll-element .scroll-bar {
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+}
+.scroll-element .scroll-element_track { background-color: #e0e0e0; }
+.scroll-element .scroll-bar { background-color: #c2c2c2; }
+.scroll-element:hover .scroll-bar { background-color: #919191; }
+.scroll-element.scroll-draggable .scroll-bar { background-color: #919191; }
+
+/* update scrollbar offset if both scrolls are visible */
+.scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_track { left: -12px; }
+.scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_track { top: -12px; }
+.scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size { left: -12px; }
+.scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size { top: -12px; }
+
+.invisible-input {
+  -moz-opacity: 0;
+  opacity:0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  position: absolute;
+
+}
+
+.label.label-default {
+  margin-right: 8px;
+  display: inline-block;
+}
