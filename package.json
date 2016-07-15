@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --host=0.0.0.0 --port 9090 --inline --hot --progress --profile --colors",
     "build": "webpack -p --progress --colors",
-    "build:watch": "webpack -p -w --progress --colors",
+    "build:watch": "webpack -w --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

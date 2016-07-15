@@ -79,6 +79,7 @@ const ModalContent = React.createClass({
       isSubmitting: true
     }, function () {
       if (Object.keys(this.state.errors).length === 0) {
+        debugger;
         this.refs['ticket-form'].submit();
       }
     });

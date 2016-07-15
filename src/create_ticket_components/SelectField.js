@@ -15,7 +15,7 @@ function SelectField ({label, options, onChange, optionValue, optionName, name, 
   return (
     <div className="col-xs-6" >
       <div className="form-group">
-        <label forName={name} >{label}</label>
+        <label htmlFor={name} >{label}</label>
         <select onChange={onChange} className="form-control" id={name} name={name}>
           {optionsData}
         </select>

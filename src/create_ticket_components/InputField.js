@@ -70,7 +70,7 @@ const InputField = React.createClass({
   render: function () {
     //var errorMessage = "";
     delete this.props.errors[this.props.label];
-    var formClass = "form-group";
+    var formClass = "form-group ";
     var inputSizeClass = this.props.size === 'md' ? "col-md-12" : "col-xs-6";
     var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name}></textarea>)
                                         : (<input onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name} value={this.state.inputVal} />);
@@ -95,7 +95,7 @@ const InputField = React.createClass({
     return (
       <div className={inputSizeClass} >
         <div className={formClass}>
-          <label forName={this.props.label} >{this.props.label}</label>
+          <label htmlFor={this.props.label} >{this.props.label}</label>
           {requiredSpan}
           {inputType}
           <span style={{color: '#b94a48'}}>{this.props.errors[this.props.label]}</span>

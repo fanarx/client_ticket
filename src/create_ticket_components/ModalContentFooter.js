@@ -36,15 +36,15 @@ var ModalContentFooter = React.createClass({
         <InputField name="subject" size="md" isSubmitting={this.props.isSubmitting} errors={this.props.errors} label={this.props.labels.subject} required={1} />
 
         <InputField name="description" size="md" type="textarea" isSubmitting={this.props.isSubmitting} errors={this.props.errors} label={this.props.labels.description} required={1} />
-        
-        <InputFileContainer />
+
+        <InputFileContainer errors={this.props.errors} />
 
         <div className="col-md-12">
             <div id="check-tick" onClick={this.handleCheckClick} className={checkBoxClass}></div>
             <input name="notifyCustomer" ref="checkbox-input" className="checkbox-input" type="checkbox" />
             <label onClick={this.handleCheckClick}>Send Email Notification to Client</label>
         </div>
-        
+
       </div>
     );
   }
