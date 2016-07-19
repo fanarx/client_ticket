@@ -8,6 +8,7 @@ const InputField = React.createClass({
       isFieldTouched: false,
       isFormEmpty: !(this.props.val),
       isFormValid: true,
+      isLessThan4: this.props.val.length < 4,
       inputVal: this.props.val
     }
   },
@@ -42,6 +43,20 @@ const InputField = React.createClass({
     });
   },
 
+  validate: function () {
+    var errors = {};
+
+    if (this.state.inputVal.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '') === "") {
+      errors[this.props.label] = this.context.errors.required
+    }
+
+    if (/^(?![\\s\\S]*?(&#|,\\\\\\\\n))(^[^\'\"]*$)[\\s\\S]*$/.test(this.state.inputVal)) {
+      errors[this.props.label] = this.context.errors.invalid_chars;
+    }
+
+    return errors;
+  },
+
   handleInput: function (e) {
     //this.props.onChange(e);
     var inputVal = e.target.value;
@@ -61,10 +76,15 @@ const InputField = React.createClass({
 
       this.setState({
         isFormEmpty: false,
-        isFormValid: /^(?![\\s\\S]*?(&#|,\\\\\\\\n))(^[^\'\"]*$)[\\s\\S]*$/.test(trimmedVal)
+        isFormValid: /^(?![\\s\\S]*?(&#|,\\\\\\\\n))(^[^\'\"]*$)[\\s\\S]*$/.test(trimmedVal),
+        isLessThan4: trimmedVal.length < 4
       })
     }
 
+  },
+
+  isSubjectORDescription: function () {
+    return this.props.name === 'subject' || this.props.name === 'description';
   },
 
   render: function () {
@@ -72,25 +92,29 @@ const InputField = React.createClass({
     delete this.props.errors[this.props.label];
     var formClass = "form-group ";
     var inputSizeClass = this.props.size === 'md' ? "col-md-12" : "col-xs-6";
-    var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name}></textarea>)
+    var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name} value={this.state.inputVal}></textarea>)
                                         : (<input onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name} value={this.state.inputVal} />);
     var requiredSpan = (this.props.required == 1) ? (<span>*</span>) : "";
 
     if (this.state.isFieldTouched) {
 
       if (this.props.required && this.state.isFormEmpty) {
-        formClass += "has-error";
 
+        formClass += "has-error";
         this.props.errors[this.props.label] = this.context.errors.required;
+
       } else if (!this.state.isFormEmpty && !this.state.isFormValid) {
+
         formClass += "has-error";
         this.props.errors[this.props.label] = this.context.errors.invalid_chars;
-      } else {
-       // delete this.props.errors[this.props.label];
+
+      } else if (!this.state.isFormEmpty && this.state.isLessThan4 && this.isSubjectORDescription()) {
+
+        formClass += "has-error";
+        this.props.errors[this.props.label] = this.context.errors.atLeast4Chars;
       }
 
     }
-
 
     return (
       <div className={inputSizeClass} >

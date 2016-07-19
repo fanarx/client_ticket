@@ -10,11 +10,15 @@ var FilterRow = React.createClass({
   },
 
   render: function () {
-
     var columns = this.props.columns.map(function (column) {
       return (
-        <FilterColumn key={column.field} onFilterChange={this.props.onFilterChange} options={column.options ? column.options : []}
-                      colSize={column.colSize} field={column.field} type={column.filterType}/>);
+        <FilterColumn dataSource={ this.props.dataSource }
+                      key={column.field}
+                      onFilterChange={this.props.onFilterChange}
+                      options={column.options ? column.options : this.props.dataSource.getListByField(column.field) }
+                      colSize={column.colSize}
+                      field={column.field}
+                      type={column.filterType}/>);
     }.bind(this));
 
     return (

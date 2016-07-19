@@ -73,6 +73,7 @@ img, span {
 }
 .filter-item {
   margin-right: 3px;
+  position: relative;
 }
 .filter-input {
   border-radius: 0;
@@ -346,3 +347,50 @@ img, span {
 .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_track { top: -12px; }
 .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size { left: -12px; }
 .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size { top: -12px; }
+
+
+/*------AUTOCOMPLETE--------------------*/
+
+.autocomplete{
+  width: 100%;
+  max-height: 380px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.autocomplete ul{
+  list-style-type: none;
+  padding: 0px 5px;
+}
+
+.autocomplete ul li{
+  margin-bottom: 2px;
+  margin-top: 2px;
+  font-size: 16px;
+  padding: 3px 15px;
+  cursor: pointer;
+}
+
+.autocomplete ul li.active{
+  background-color: #337ab7;
+  color: #fff;
+}
+/*end------------AUTOCOMPLETE----------------*/

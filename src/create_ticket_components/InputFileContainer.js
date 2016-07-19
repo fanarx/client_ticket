@@ -124,8 +124,8 @@ const InputFileContainer = React.createClass({
 
 
 
-    //if (this.state.filesSize > 5 * 1024 * 1024) {
-    if (this.state.filesSize > 50000) {
+    if (this.state.filesSize > 5 * 1024 * 1024) {
+    //if (this.state.filesSize > 50000) {
       this.props.errors.filesSize = "Upload exceeds 5 mb";
     } else {
       delete this.props.errors.filesSize;

@@ -1,11 +1,4 @@
 function DataSource(){
-  //this.rawData = searchGridData;
-
-  // //ajax call or whatever
-  // this.processData = function(){
-  //     this.rawData =  searcGridData;
-  // };
-
   this.getTickets = function(){
     return tickets;
   };
@@ -56,7 +49,6 @@ DataSource.prototype.getInstanceById = function(id){
 DataSource.prototype.getTicketsFiltered = function(){
   var tickets = this.getTickets();
 
-
   return tickets.map(function(ticket){
     var status = this.getStatusById(ticket.status);
     ticket.statusMessage = "";
@@ -71,6 +63,10 @@ DataSource.prototype.getTicketsFiltered = function(){
 
     ticket.instanceMessage = this.getInstanceById(ticket.instance_id );
 
+    if(!ticket.assignee){
+      ticket.assignee = translations.unassigned;
+    }
+
     return ticket;
   }.bind(this));
 };
@@ -82,5 +78,33 @@ DataSource.prototype.showInstances = function(){
   return keys.length > 1;
 };
 
+Array.prototype.getUnique = function(){
+  var u = {}, a = [];
+  for(var i = 0, l = this.length; i < l; ++i){
+    if(u.hasOwnProperty(this[i]) || (typeof this[i] == 'string' && u.hasOwnProperty(this[i].toLowerCase()) )) {
+      continue;
+    }
+    a.push(this[i]);
+    u[this[i]] = 1;
+  }
+  return a;
+};
+
+DataSource.prototype.getListByField = function(field){
+  var tickets = this.getTicketsFiltered();
+
+  tickets = tickets.filter(function(ticket){
+    return ticket[field]? true : false;
+  });
+
+  var list = tickets.map(function(ticket){
+    return ticket[field] ? ticket[field] : null;
+  });
+
+  if(list.length)
+    return list.getUnique();
+
+  return [];
+};
+
 module.exports = new DataSource();
-//dataSource.processData();

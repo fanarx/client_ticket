@@ -252,7 +252,7 @@ select.form-control{
 
 .checkbox-input{
   position: absolute;
-  left: -9999%;
+  left: -9999px;
   width: 0;
   height: 0;
 }

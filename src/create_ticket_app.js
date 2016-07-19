@@ -929,20 +929,21 @@ var priorities = [{ "id": 1, "name": "Urgent" }, { "id": 2, "name": "High" }, { 
   "name": "Low"
 }];
 var name = '2Requester';
+ */
+// var translations = {
+//   newTicketTitle: "?Create New Ticket",
+//   requester: "?Requester",
+//   instance: "?Select your servicecamp",
+//   inbox: "?Inboxes",
+//   assignee: "?Assignee",
+//   priority: "?Priority",
+//   subject: "?Subject",
+//   description: "?Description",
+//   required: "?This field is required",
+//   invalid_chars: "?This field contains invalid characters",
+//   atLeast4Chars: "?This field must contain at least 4 characters"
+// };
 
-var translations = {
-  newTicketTitle: "Create New Ticket",
-  requester: "Requester",
-  instance: "Select your servicecamp",
-  inbox: "Inboxes",
-  assignee: "Assignee",
-  priority: "Priority",
-  subject: "Subject",
-  description: "Description",
-  required: "?This field is required",
-  invalid_chars: "?This field contains invalid characters"
-};
-*/
 
 ReactDOM.render(
   <ModalBox title={translations.newTicketTitle}
@@ -951,5 +952,7 @@ ReactDOM.render(
             labels={translations}
             priorities={priorities}
             errorMessage={errorMessage}
+            formAction = {formAction}
+            formValues={values}
   />, document.getElementById('app')
 );

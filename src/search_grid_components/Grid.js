@@ -75,21 +75,22 @@ var Grid = React.createClass({
 
   render: function () {
     var tickets = this.filterTickets(this.props.tickets, this.props.filters, this.props.sort);
-    var rows = tickets.map(function (ticket) {
+
+    var rows = tickets.map(function (ticket, idx_row) {
 
       var columns = this.props.columns.map(function (column, idx) {
-        //console.log('idx', idx);
         var optionalProps = {};
         if (column.link && column.link == true) {
           optionalProps.link = 'https://' + ticket.instanceMessage + '/ticket/' + ticket.id;
         }
 
-        return (<GridColumn key={ticket.id + "_" + idx} id={ticket[column.field]} colSize={column.colSize} {...optionalProps}
+        return (<GridColumn key={ticket.id + "_"+ column.field + "_" + idx} id={ticket[column.field]} colSize={column.colSize} {...optionalProps}
                             field={column.field}> { ticket[column.contentField] } </GridColumn>);
       }.bind(this));
 
+
       return (
-        <GridRow key={ ticket.id }>
+        <GridRow key={ ticket.id +'_'+  idx_row }>
           { columns }
         </GridRow>);
 

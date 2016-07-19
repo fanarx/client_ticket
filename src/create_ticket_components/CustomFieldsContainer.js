@@ -33,7 +33,14 @@ const CustomFieldsContainer = React.createClass({
             name: option
           }
         });
-        return <SelectField onChange={this.props.onChange} name={"customFields["+field.id+"]"} key={field.id} label={field.name}  options={selectOptions} />;
+        return (
+          <SelectField onChange={this.props.onChange}
+                       name={"customFields["+field.id+"]"}
+                       key={field.id} label={field.name}
+                       options={selectOptions}
+                       selectedDefault={field.value}
+          />
+        );
       }
     });
 

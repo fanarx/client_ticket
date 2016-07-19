@@ -17,7 +17,8 @@ const ModalContent = React.createClass({
     return {
       errors: {
         required: this.props.labels.required,
-        invalid_chars: this.props.labels.invalid_chars
+        invalid_chars: this.props.labels.invalid_chars,
+        atLeast4Chars: this.props.labels.atLeast4Chars
       }
     }
   },
@@ -27,17 +28,40 @@ const ModalContent = React.createClass({
     instances: React.PropTypes.array.isRequired,
     requester: React.PropTypes.object.isRequired,
     priorities: React.PropTypes.array.isRequired,
-    errorMessage: React.PropTypes.string
+    errorMessage: React.PropTypes.string,
+    formAction: React.PropTypes.string.isRequired,
+    formValues: React.PropTypes.any.isRequired
   },
 
   getInitialState: function () {
-    return {
-      currentInstance: this.props.instances[0],
-      currentInboxes: this.props.instances[0].inboxes,
-      currentInbox: this.props.instances[0].inboxes[0],
+    var state = {
       errors: {},
       isSubmitting: false
+    };
+
+    if (this.props.formValues.instance_id) {
+      let currInstance = this.props.instances.filter(instance => instance.instance_id == this.props.formValues.instance_id)[0];
+      let currInbox = currInstance.inboxes.filter(inbox => inbox.id == this.props.formValues.inbox_id)[0];
+
+      let currentCustomFields = currInbox.customFields.map((custField) => {
+        if (this.props.formValues.customFields[custField.id] !== undefined) {
+          custField.value = this.props.formValues.customFields[custField.id];
+          return custField;
+        }
+      });
+
+      currInbox.customFields = currentCustomFields;
+
+      state.currentInstance = currInstance;
+      state.currentInboxes = currInstance.inboxes;
+      state.currentInbox = currInbox;
+    } else {
+      state.currentInstance = this.props.instances[0];
+      state.currentInboxes = this.props.instances[0].inboxes;
+      state.currentInbox = this.props.instances[0].inboxes[0];
     }
+
+    return state;
   },
 
   selectInstance: function (instance_id) {
@@ -79,7 +103,6 @@ const ModalContent = React.createClass({
       isSubmitting: true
     }, function () {
       if (Object.keys(this.state.errors).length === 0) {
-        debugger;
         this.refs['ticket-form'].submit();
       }
     });
@@ -90,7 +113,7 @@ const ModalContent = React.createClass({
     return (
       <div>
         {this.props.errorMessage && <ErrorMessage errors={this.props.errorMessage} />}
-        <form action="http://helpdesk/tvclient/ticket/create?token=4566&accountId=50975214&lang=en" method="POST" ref="ticket-form" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
+        <form action={this.props.formAction}  method="POST" ref="ticket-form" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
           <div ref="modal-body" className="modal-body scrollbar-macosx scrollbar-popup">
             <div className="row nomargin">
               <div className="col-md-12">
@@ -107,7 +130,9 @@ const ModalContent = React.createClass({
                                options={this.props.instances}
                                name="instance_id"
                                optionValue="instance_id"
-                               optionName="instance_url" />
+                               optionName="instance_url"
+                               selectedDefault={this.props.formValues.instance_id && this.props.formValues.instance_id}
+                  />
                 </div>
                 <div className="row">
 
@@ -115,17 +140,19 @@ const ModalContent = React.createClass({
                                label={this.props.labels.inbox}
                                options={this.state.currentInboxes}
                                name="inbox_id"
+                               selectedDefault={this.props.formValues.inbox_id && this.props.formValues.inbox_id}
                   />
 
                   <SelectField label={this.props.labels.assignee}
                                options={this.state.currentInbox.assigneeList}
                                name="assignee"
-                               selectedDefault={this.state.currentInbox.defaultAssignee}
+                               selectedDefault={this.props.formValues.assignee || this.state.currentInbox.defaultAssignee}
                   />
 
                   <SelectField label={this.props.labels.priority}
                                options={this.props.priorities}
                                name="priority_id"
+                               selectedDefault={this.props.formValues.priority_id || this.state.currentInbox.priority_id}
                   />
 
                   <CustomFieldsContainer isSubmitting={this.state.isSubmitting}
@@ -134,7 +161,12 @@ const ModalContent = React.createClass({
 
                   <ModalContentFooter labels={this.props.labels}
                                       isSubmitting={this.state.isSubmitting}
-                                      errors={this.state.errors} />
+                                      errors={this.state.errors}
+                                      subjectDefault={this.props.formValues.subject}
+                                      descriptionDefault={this.props.formValues.description}
+                                      notifyCustomerDefault={this.props.formValues.notifyCustomer}
+                  />
+
                 </div>
               </div>
             </div>

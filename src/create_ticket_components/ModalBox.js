@@ -3,13 +3,20 @@ const ModalHeader = require('./ModalHeader');
 const ModalContent = require('./ModalContent');
 
 
-function ModalBox ({title, instances, requester, priorities, labels, errorMessage}) {
+function ModalBox ({title, instances, requester, priorities, labels, errorMessage, formAction, formValues}) {
   return (
     <div className="modal-dialog modal-450">
       <div className="modal-content">
         <div id="ticket-create" className="popup ticket-create">
           <ModalHeader title={title} />
-          <ModalContent labels={labels} instances={instances} requester={requester} priorities={priorities} errorMessage={errorMessage} />
+          <ModalContent formAction={formAction}
+                        formValues={formValues}
+                        labels={labels}
+                        instances={instances}
+                        requester={requester}
+                        priorities={priorities}
+                        errorMessage={errorMessage}
+          />
         </div>
       </div>
     </div>
@@ -22,7 +29,8 @@ ModalBox.propTypes = {
   requester: React.PropTypes.object.isRequired,
   priorities: React.PropTypes.array.isRequired,
   labels: React.PropTypes.object.isRequired,
-  errorMessage: React.PropTypes.string
+  errorMessage: React.PropTypes.string,
+  formValues: React.PropTypes.any.isRequired
 };
 
 module.exports = ModalBox;

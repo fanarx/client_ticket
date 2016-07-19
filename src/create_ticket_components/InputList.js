@@ -12,7 +12,7 @@ const InputList = React.createClass({
   render: function () {
     var _this = this;
     let inputs = this.props.inputs.map(input =>
-      <input id={input} className="invisible-input" name={"multiFilesUpload["+ input +"]"} ref={input} onChange={(evt) => this.props.onChange(evt, input)} type="file" data-id={input} key={input} multiple />
+      <input id={input} className="invisible-input" name={"multiFilesUpload[]"} ref={input} onChange={(evt) => this.props.onChange(evt, input)} type="file" data-id={input} key={input} multiple />
     );
 
     let inputLabels = _this.props.inputs.map(input => {

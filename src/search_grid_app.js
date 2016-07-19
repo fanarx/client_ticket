@@ -9,9 +9,6 @@ const ReactDOM = require('react-dom');
 const Modal = require('./search_grid_components/Modal');
 
 
-
-
-
 var dataSource = require('../utils/dataSource');
 
 var columns = [
@@ -69,12 +66,12 @@ var columns = [
   }
 ];
 if(dataSource.showInstances()){
-  columns.unshift({
+  columns.splice(1, 0, {
     field: 'instanceMessage',
     filterType: 'textbox',
     colSize: 2,
     contentField: 'instanceMessage',
-    title: translations.instance
+    title: translations.servicecamp
   });
 }
 
