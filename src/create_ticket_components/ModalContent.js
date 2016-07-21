@@ -3,6 +3,7 @@ const CustomFieldsContainer = require('./CustomFieldsContainer');
 const ModalContentFooter = require('./ModalContentFooter');
 const ModalFooterButtons = require('./ModalFooterButtons');
 const SelectField = require('./SelectField');
+const TokenContainer = require('./TokenContainer');
 const ErrorMessage = require('./ErrorMessage');
 
 
@@ -55,6 +56,8 @@ const ModalContent = React.createClass({
       state.currentInstance = currInstance;
       state.currentInboxes = currInstance.inboxes;
       state.currentInbox = currInbox;
+      state.currentInbox.defaultAssignee = this.props.formValues.assignee;
+      state.currentInbox.priority_id = this.props.formValues.priority_id;
     } else {
       state.currentInstance = this.props.instances[0];
       state.currentInboxes = this.props.instances[0].inboxes;
@@ -109,7 +112,6 @@ const ModalContent = React.createClass({
   },
 
   render: function () {
-
     return (
       <div>
         {this.props.errorMessage && <ErrorMessage errors={this.props.errorMessage} />}
@@ -125,13 +127,14 @@ const ModalContent = React.createClass({
                     </div>
                   </div>
                   <input type="hidden" value={this.state.currentInstance.staff_id} name="staff_id" />
+                  <TokenContainer token={this.props.formValues.token} />
                   <SelectField onChange={this.setCurrentInstance}
                                label={this.props.labels.instance}
                                options={this.props.instances}
                                name="instance_id"
                                optionValue="instance_id"
                                optionName="instance_url"
-                               selectedDefault={this.props.formValues.instance_id && this.props.formValues.instance_id}
+                               selectedDefault={this.state.currentInstance.instance_id}
                   />
                 </div>
                 <div className="row">
@@ -140,19 +143,19 @@ const ModalContent = React.createClass({
                                label={this.props.labels.inbox}
                                options={this.state.currentInboxes}
                                name="inbox_id"
-                               selectedDefault={this.props.formValues.inbox_id && this.props.formValues.inbox_id}
+                               selectedDefault={this.state.currentInbox.id}
                   />
 
                   <SelectField label={this.props.labels.assignee}
                                options={this.state.currentInbox.assigneeList}
                                name="assignee"
-                               selectedDefault={this.props.formValues.assignee || this.state.currentInbox.defaultAssignee}
+                               selectedDefault={this.state.currentInbox.defaultAssignee}
                   />
 
                   <SelectField label={this.props.labels.priority}
                                options={this.props.priorities}
                                name="priority_id"
-                               selectedDefault={this.props.formValues.priority_id || this.state.currentInbox.priority_id}
+                               selectedDefault={this.state.currentInbox.priority_id}
                   />
 
                   <CustomFieldsContainer isSubmitting={this.state.isSubmitting}

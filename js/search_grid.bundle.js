@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';__webpack_require__(1);__webpack_require__(2);__webpack_require__(3);__webpack_require__(4);var React=__webpack_require__(41);var ReactDOM=__webpack_require__(198);var Modal=__webpack_require__(211);var dataSource=__webpack_require__(226);var columns=[{field:'id',filterType:'empty',colSize:1,contentField:'id',title:translations.ticket_id,link:true},{field:'inbox',filterType:'textbox',colSize:1,contentField:'inbox',title:translations.inbox},{field:'priority',filterType:'multiselect',options:dataSource.getPriorities(),colSize:1,contentField:'priorityMessage',title:translations.priority},{field:'status',filterType:'multiselect',options:dataSource.getStatuses(),colSize:1,contentField:'statusMessage',title:translations.status},{field:'topic',filterType:'textbox',colSize:2,contentField:'topic',title:translations.topic},{field:'assignee',filterType:'textbox',colSize:dataSource.showInstances()?2:3,contentField:'assignee',title:translations.assignee},{field:'subject',filterType:'textbox',colSize:dataSource.showInstances()?2:3,contentField:'subject',title:translations.subject}];if(dataSource.showInstances()){columns.splice(1,0,{field:'instanceMessage',filterType:'textbox',colSize:2,contentField:'instanceMessage',title:translations.servicecamp});}ReactDOM.render(React.createElement(Modal,{dataSource:dataSource,translations:translations,columns:columns,id:'search-grid'}),document.getElementById('search-grid-component'));
+	'use strict';__webpack_require__(1);__webpack_require__(2);__webpack_require__(3);__webpack_require__(4);var React=__webpack_require__(41);var ReactDOM=__webpack_require__(198);var Modal=__webpack_require__(213);var dataSource=__webpack_require__(228);var columns=[{field:'id',filterType:'empty',colSize:1,contentField:'id',title:translations.ticket_id,link:true},{field:'inbox',filterType:'textbox',colSize:1,contentField:'inbox',title:translations.inbox},{field:'priority',filterType:'multiselect',options:dataSource.getPriorities(),colSize:1,contentField:'priorityMessage',title:translations.priority},{field:'status',filterType:'multiselect',options:dataSource.getStatuses(),colSize:1,contentField:'statusMessage',title:translations.status},{field:'topic',filterType:'textbox',colSize:2,contentField:'topic',title:translations.topic},{field:'assignee',filterType:'textbox',colSize:dataSource.showInstances()?2:3,contentField:'assignee',title:translations.assignee},{field:'subject',filterType:'textbox',colSize:dataSource.showInstances()?2:3,contentField:'subject',title:translations.subject}];if(dataSource.showInstances()){columns.splice(1,0,{field:'instanceMessage',filterType:'textbox',colSize:2,contentField:'instanceMessage',title:translations.servicecamp});}ReactDOM.render(React.createElement(Modal,{dataSource:dataSource,translations:translations,columns:columns,id:'search-grid'}),document.getElementById('search-grid-component'));
 
 /***/ },
 /* 1 */
@@ -3527,7 +3527,7 @@
 	/**
 	 * Keeps track of the current owner.
 	 *
-	 * The current owner is the component who should own any create_ticket_components that are
+	 * The current owner is the component who should own any components that are
 	 * currently being constructed.
 	 */
 	var ReactCurrentOwner = {
@@ -3541,7 +3541,6 @@
 	};
 	
 	module.exports = ReactCurrentOwner;
-
 
 /***/ },
 /* 46 */
@@ -3572,7 +3571,7 @@
 	var validateDOMNesting = __webpack_require__(110);
 	
 	/**
-	 * Text nodes violate a couple assumptions that React makes about create_ticket_components:
+	 * Text nodes violate a couple assumptions that React makes about components:
 	 *
 	 *  - When mounting text into the DOM, adjacent text nodes are merged.
 	 *  - Text nodes cannot be assigned a React root ID.
@@ -3580,7 +3579,7 @@
 	 * This component is used to wrap strings in elements so that they can undergo
 	 * the same reconciliation that is applied to elements.
 	 *
-	 * TODO: Investigate representing React create_ticket_components in the DOM with text nodes.
+	 * TODO: Investigate representing React components in the DOM with text nodes.
 	 *
 	 * @class ReactDOMTextComponent
 	 * @extends ReactComponent
@@ -3674,7 +3673,6 @@
 	});
 	
 	module.exports = ReactDOMTextComponent;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -5903,7 +5901,7 @@
 	
 	/**
 	 * Temporary (?) hack so that we can store all top-level pending updates on
-	 * composites instead of having to worry about different types of create_ticket_components
+	 * composites instead of having to worry about different types of components
 	 * here.
 	 */
 	var TopLevelWrapper = function () {};
@@ -5942,7 +5940,7 @@
 	  _instancesByReactRootID: instancesByReactRootID,
 	
 	  /**
-	   * This is a hook provided to support rendering React create_ticket_components while
+	   * This is a hook provided to support rendering React components while
 	   * ensuring that the apparent scroll position of its `container` does not
 	   * change.
 	   *
@@ -6046,7 +6044,7 @@
 	    // Check if it quacks like an element
 	    nextElement != null && nextElement.props !== undefined ? ' This may be caused by unintentionally loading two independent ' + 'copies of React.' : '') : invariant(false) : undefined;
 	
-	    process.env.NODE_ENV !== 'production' ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering create_ticket_components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : undefined;
+	    process.env.NODE_ENV !== 'production' ? warning(!container || !container.tagName || container.tagName.toUpperCase() !== 'BODY', 'render(): Rendering components directly into document.body is ' + 'discouraged, since its children are often manipulated by third-party ' + 'scripts and browser extensions. This may lead to subtle ' + 'reconciliation issues. Try rendering into a container element created ' + 'for your app.') : undefined;
 	
 	    var nextWrappedElement = new ReactElement(TopLevelWrapper, null, null, null, null, null, nextElement);
 	
@@ -6072,7 +6070,7 @@
 	    var containerHasNonRootReactChild = hasNonRootReactChild(container);
 	
 	    if (process.env.NODE_ENV !== 'production') {
-	      process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'render(...): Replacing React-rendered children with a new root ' + 'component. If you intended to update the children of this node, ' + 'you should instead have the existing children update their state ' + 'and render the new create_ticket_components instead of calling ReactDOM.render.') : undefined;
+	      process.env.NODE_ENV !== 'production' ? warning(!containerHasNonRootReactChild, 'render(...): Replacing React-rendered children with a new root ' + 'component. If you intended to update the children of this node, ' + 'you should instead have the existing children update their state ' + 'and render the new components instead of calling ReactDOM.render.') : undefined;
 	
 	      if (!containerHasReactMarkup || reactRootElement.nextSibling) {
 	        var rootElementSibling = reactRootElement;
@@ -6111,7 +6109,7 @@
 	  },
 	
 	  /**
-	   * Registers a container node into which React create_ticket_components will be rendered.
+	   * Registers a container node into which React components will be rendered.
 	   * This also creates the "reactRoot" ID that will be assigned to the element
 	   * rendered within.
 	   *
@@ -6341,7 +6339,7 @@
 	        var diffIndex = firstDifferenceIndex(normalizedMarkup, rootMarkup);
 	        var difference = ' (client) ' + normalizedMarkup.substring(diffIndex - 20, diffIndex + 20) + '\n (server) ' + rootMarkup.substring(diffIndex - 20, diffIndex + 20);
 	
-	        !(container.nodeType !== DOC_NODE_TYPE) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'You\'re trying to render a component to the document using ' + 'server rendering but the checksum was invalid. This usually ' + 'means you rendered a different component type or props on ' + 'the client from the one on the server, or your render() ' + 'methods are impure. React cannot handle this case due to ' + 'cross-browser quirks by rendering at the document root. You ' + 'should look for environment dependent code in your create_ticket_components ' + 'and ensure the props are the same client and server side:\n%s', difference) : invariant(false) : undefined;
+	        !(container.nodeType !== DOC_NODE_TYPE) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'You\'re trying to render a component to the document using ' + 'server rendering but the checksum was invalid. This usually ' + 'means you rendered a different component type or props on ' + 'the client from the one on the server, or your render() ' + 'methods are impure. React cannot handle this case due to ' + 'cross-browser quirks by rendering at the document root. You ' + 'should look for environment dependent code in your components ' + 'and ensure the props are the same client and server side:\n%s', difference) : invariant(false) : undefined;
 	
 	        if (process.env.NODE_ENV !== 'production') {
 	          process.env.NODE_ENV !== 'production' ? warning(false, 'React attempted to reuse markup in a container but the ' + 'checksum was invalid. This generally means that you are ' + 'using server rendering and the markup generated on the ' + 'server was not what the client was expecting. React injected ' + 'new markup to compensate which works but you have lost many ' + 'of the benefits of server rendering. Instead, figure out ' + 'why the markup being generated is different on the client ' + 'or server:\n%s', difference) : undefined;
@@ -6388,7 +6386,6 @@
 	});
 	
 	module.exports = ReactMount;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -8233,7 +8230,7 @@
 	
 	'use strict';
 	
-	// This registry keeps track of the React IDs of the create_ticket_components that rendered to
+	// This registry keeps track of the React IDs of the components that rendered to
 	// `null` (in reality a placeholder such as `noscript`)
 	var nullComponentIDsRegistry = {};
 	
@@ -8269,7 +8266,6 @@
 	
 	module.exports = ReactEmptyComponentRegistry;
 
-
 /***/ },
 /* 85 */
 /***/ function(module, exports, __webpack_require__) {
@@ -8301,7 +8297,7 @@
 	var MAX_TREE_DEPTH = 10000;
 	
 	/**
-	 * Creates a DOM ID prefix to use when mounting React create_ticket_components.
+	 * Creates a DOM ID prefix to use when mounting React components.
 	 *
 	 * @param {number} index A unique integer
 	 * @return {string} React root ID.
@@ -8450,7 +8446,7 @@
 	}
 	
 	/**
-	 * Manages the IDs assigned to DOM representations of React create_ticket_components. This
+	 * Manages the IDs assigned to DOM representations of React components. This
 	 * uses a specific scheme in order to traverse the DOM efficiently (e.g. in
 	 * order to simulate events).
 	 *
@@ -8576,7 +8572,6 @@
 	};
 	
 	module.exports = ReactInstanceHandles;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -8940,7 +8935,7 @@
 	  var nextEmpty = nextElement === null || nextElement === false;
 	
 	  return(
-	    // This has a few false positives w/r/t empty create_ticket_components.
+	    // This has a few false positives w/r/t empty components.
 	    prevEmpty || nextEmpty || nextElement._owner !== prevElement._owner || nextElement.ref !== prevElement.ref
 	  );
 	};
@@ -8956,7 +8951,6 @@
 	};
 	
 	module.exports = ReactRef;
-
 
 /***/ },
 /* 92 */
@@ -8978,10 +8972,10 @@
 	var invariant = __webpack_require__(53);
 	
 	/**
-	 * ReactOwners are capable of storing references to owned create_ticket_components.
+	 * ReactOwners are capable of storing references to owned components.
 	 *
-	 * All create_ticket_components are capable of //being// referenced by owner create_ticket_components, but
-	 * only ReactOwner create_ticket_components are capable of //referencing// owned create_ticket_components.
+	 * All components are capable of //being// referenced by owner components, but
+	 * only ReactOwner components are capable of //referencing// owned components.
 	 * The named reference is known as a "ref".
 	 *
 	 * Refs are available when mounted and updated during reconciliation.
@@ -9053,7 +9047,6 @@
 	};
 	
 	module.exports = ReactOwner;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -9432,7 +9425,7 @@
 	
 	function runBatchedUpdates(transaction) {
 	  var len = transaction.dirtyComponentsLength;
-	  !(len === dirtyComponents.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected flush transaction\'s stored dirty-create_ticket_components length (%s) to ' + 'match dirty-create_ticket_components array length (%s).', len, dirtyComponents.length) : invariant(false) : undefined;
+	  !(len === dirtyComponents.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected flush transaction\'s stored dirty-components length (%s) to ' + 'match dirty-components array length (%s).', len, dirtyComponents.length) : invariant(false) : undefined;
 	
 	  // Since reconciling a component higher in the owner hierarchy usually (not
 	  // always -- see shouldComponentUpdate()) will reconcile children, reconcile
@@ -9495,7 +9488,7 @@
 	  // _renderValidatedComponent) assume that calls to render aren't nested;
 	  // verify that that's the case. (This is called by each top-level update
 	  // function, like setProps, setState, forceUpdate, etc.; creation and
-	  // destruction of top-level create_ticket_components is guarded in ReactMount.)
+	  // destruction of top-level components is guarded in ReactMount.)
 	
 	  if (!batchingStrategy.isBatchingUpdates) {
 	    batchingStrategy.batchedUpdates(enqueueUpdate, component);
@@ -9546,7 +9539,6 @@
 	};
 	
 	module.exports = ReactUpdates;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -10221,13 +10213,13 @@
 	    instance = new ReactEmptyComponent(instantiateReactComponent);
 	  } else if (typeof node === 'object') {
 	    var element = node;
-	    !(element && (typeof element.type === 'function' || typeof element.type === 'string')) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Element type is invalid: expected a string (for built-in create_ticket_components) ' + 'or a class/function (for composite create_ticket_components) but got: %s.%s', element.type == null ? element.type : typeof element.type, getDeclarationErrorAddendum(element._owner)) : invariant(false) : undefined;
+	    !(element && (typeof element.type === 'function' || typeof element.type === 'string')) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Element type is invalid: expected a string (for built-in components) ' + 'or a class/function (for composite components) but got: %s.%s', element.type == null ? element.type : typeof element.type, getDeclarationErrorAddendum(element._owner)) : invariant(false) : undefined;
 	
 	    // Special case string values
 	    if (typeof element.type === 'string') {
 	      instance = ReactNativeComponent.createInternalComponent(element);
 	    } else if (isInternalComponentType(element.type)) {
-	      // This is temporarily available for custom create_ticket_components that are not string
+	      // This is temporarily available for custom components that are not string
 	      // representations. I.e. ART. Once those are updated to use the string
 	      // representation, we can drop this code path.
 	      instance = new element.type(element);
@@ -10248,7 +10240,7 @@
 	  instance.construct(node);
 	
 	  // These two fields are used by the DOM and ART diffing algorithms
-	  // respectively. Instead of using expandos on create_ticket_components, we should be
+	  // respectively. Instead of using expandos on components, we should be
 	  // storing the state needed by the diffing algorithms elsewhere.
 	  instance._mountIndex = 0;
 	  instance._mountImage = null;
@@ -10270,7 +10262,6 @@
 	}
 	
 	module.exports = instantiateReactComponent;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -10352,7 +10343,7 @@
 	
 	/**
 	 * An incrementing ID assigned to each component when it is mounted. This is
-	 * used to enforce the order in which `ReactUpdates` updates dirty create_ticket_components.
+	 * used to enforce the order in which `ReactUpdates` updates dirty components.
 	 *
 	 * @private
 	 */
@@ -10445,7 +10436,7 @@
 	        process.env.NODE_ENV !== 'production' ? warning(false, '%s(...): No `render` method found on the returned component ' + 'instance: you may have forgotten to define `render`, returned ' + 'null/false from a stateless component, or tried to render an ' + 'element whose type is a function that isn\'t a React component.', Component.displayName || Component.name || 'Component') : undefined;
 	      } else {
 	        // We support ES6 inheriting from React.Component, the module pattern,
-	        // and stateless create_ticket_components, but not ES6 classes that don't extend
+	        // and stateless components, but not ES6 classes that don't extend
 	        process.env.NODE_ENV !== 'production' ? warning(Component.prototype && Component.prototype.isReactComponent || !canInstantiate || !(inst instanceof Component), '%s(...): React component classes must extend React.Component.', Component.displayName || Component.name || 'Component') : undefined;
 	      }
 	    }
@@ -10546,7 +10537,7 @@
 	    // leaks a reference to the public instance.
 	    ReactInstanceMap.remove(inst);
 	
-	    // Some existing create_ticket_components rely on inst.props even after they've been
+	    // Some existing components rely on inst.props even after they've been
 	    // destroyed (in event handlers).
 	    // TODO: inst.props = null;
 	    // TODO: inst.state = null;
@@ -10903,11 +10894,11 @@
 	   */
 	  attachRef: function (ref, component) {
 	    var inst = this.getPublicInstance();
-	    !(inst != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Stateless function create_ticket_components cannot have refs.') : invariant(false) : undefined;
+	    !(inst != null) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Stateless function components cannot have refs.') : invariant(false) : undefined;
 	    var publicComponentInstance = component.getPublicInstance();
 	    if (process.env.NODE_ENV !== 'production') {
 	      var componentName = component && component.getName ? component.getName() : 'a component';
-	      process.env.NODE_ENV !== 'production' ? warning(publicComponentInstance != null, 'Stateless function create_ticket_components cannot be given refs ' + '(See ref "%s" in %s created by %s). ' + 'Attempts to access this ref will fail.', ref, componentName, this.getName()) : undefined;
+	      process.env.NODE_ENV !== 'production' ? warning(publicComponentInstance != null, 'Stateless function components cannot be given refs ' + '(See ref "%s" in %s created by %s). ' + 'Attempts to access this ref will fail.', ref, componentName, this.getName()) : undefined;
 	    }
 	    var refs = inst.refs === emptyObject ? inst.refs = {} : inst.refs;
 	    refs[ref] = publicComponentInstance;
@@ -10940,7 +10931,7 @@
 	  /**
 	   * Get the publicly accessible representation of this component - i.e. what
 	   * is exposed by refs and returned by render. Can be null for stateless
-	   * create_ticket_components.
+	   * components.
 	   *
 	   * @return {ReactComponent} the public component instance.
 	   * @internal
@@ -10971,7 +10962,6 @@
 	};
 	
 	module.exports = ReactCompositeComponent;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -12843,7 +12833,7 @@
 	  // Batching is necessary here in order to ensure that all event handlers run
 	  // before the next rerender (including event handlers attached to ancestor
 	  // elements instead of directly on the input). Without this, controlled
-	  // create_ticket_components don't work properly in conjunction with event bubbling because
+	  // components don't work properly in conjunction with event bubbling because
 	  // the component is rerendered and the value reverted before all the event
 	  // handlers can run. See https://github.com/facebook/react/issues/708.
 	  ReactUpdates.batchedUpdates(runEventInBatch, event);
@@ -13094,7 +13084,6 @@
 	
 	module.exports = ChangeEventPlugin;
 
-
 /***/ },
 /* 121 */
 /***/ function(module, exports) {
@@ -13337,7 +13326,7 @@
 	    }
 	
 	    if (from === to) {
-	      // Nothing pertains to our managed create_ticket_components.
+	      // Nothing pertains to our managed components.
 	      return null;
 	    }
 	
@@ -13362,7 +13351,6 @@
 	};
 	
 	module.exports = EnterLeaveEventPlugin;
-
 
 /***/ },
 /* 126 */
@@ -13942,7 +13930,7 @@
 	
 	  /**
 	   * Call the provided function in a context within which calls to `setState`
-	   * and friends are batched such that create_ticket_components aren't updated unnecessarily.
+	   * and friends are batched such that components aren't updated unnecessarily.
 	   */
 	  batchedUpdates: function (callback, a, b, c, d, e) {
 	    var alreadyBatchingUpdates = ReactDefaultBatchingStrategy.isBatchingUpdates;
@@ -13959,7 +13947,6 @@
 	};
 	
 	module.exports = ReactDefaultBatchingStrategy;
-
 
 /***/ },
 /* 133 */
@@ -14321,7 +14308,7 @@
 	}
 	
 	function processChildContextDev(context, inst) {
-	  // Pass down our tag name to child create_ticket_components for validation purposes
+	  // Pass down our tag name to child components for validation purposes
 	  context = assign({}, context);
 	  var info = context[validateDOMNesting.ancestorInfoContextKey];
 	  context[validateDOMNesting.ancestorInfoContextKey] = validateDOMNesting.updatedAncestorInfo(info, inst._tag, inst);
@@ -14334,7 +14321,7 @@
 	
 	/**
 	 * Creates a new React class that is idempotent and capable of containing other
-	 * React create_ticket_components. It accepts event listeners and DOM properties that are
+	 * React components. It accepts event listeners and DOM properties that are
 	 * valid according to `DOMProperty`.
 	 *
 	 *  - Event listeners: `onClick`, `onMouseDown`, etc.
@@ -14871,7 +14858,7 @@
 	         * take advantage of React's reconciliation for styling and <title>
 	         * management. So we just document it and throw in dangerous cases.
 	         */
-	         true ? process.env.NODE_ENV !== 'production' ? invariant(false, '<%s> tried to unmount. Because of cross-browser quirks it is ' + 'impossible to unmount some top-level create_ticket_components (eg <html>, ' + '<head>, and <body>) reliably and efficiently. To fix this, have a ' + 'single top-level component that never unmounts render these ' + 'elements.', this._tag) : invariant(false) : undefined;
+	         true ? process.env.NODE_ENV !== 'production' ? invariant(false, '<%s> tried to unmount. Because of cross-browser quirks it is ' + 'impossible to unmount some top-level components (eg <html>, ' + '<head>, and <body>) reliably and efficiently. To fix this, have a ' + 'single top-level component that never unmounts render these ' + 'elements.', this._tag) : invariant(false) : undefined;
 	        break;
 	    }
 	
@@ -14927,7 +14914,6 @@
 	assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
 	
 	module.exports = ReactDOMComponent;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -15754,7 +15740,7 @@
 	  var returnValue = LinkedValueUtils.executeOnChange(props, event);
 	
 	  // Here we use asap to wait until all updates have propagated, which
-	  // is important when using controlled create_ticket_components within layers:
+	  // is important when using controlled components within layers:
 	  // https://github.com/facebook/react/issues/1698
 	  ReactUpdates.asap(forceUpdateIfMounted, this);
 	
@@ -15799,7 +15785,6 @@
 	}
 	
 	module.exports = ReactDOMInput;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -15878,7 +15863,7 @@
 	
 	/**
 	 * Provide a linked `value` attribute for controlled forms. You should not use
-	 * this outside of the ReactDOM controlled form create_ticket_components.
+	 * this outside of the ReactDOM controlled form components.
 	 */
 	var LinkedValueUtils = {
 	  checkPropTypes: function (tagName, props, owner) {
@@ -15940,7 +15925,6 @@
 	};
 	
 	module.exports = LinkedValueUtils;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -15968,7 +15952,7 @@
 	
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
-	 * supplied to React create_ticket_components. Example usage:
+	 * supplied to React components. Example usage:
 	 *
 	 *   var Props = require('ReactPropTypes');
 	 *   var MyArticle = React.createClass({
@@ -16303,7 +16287,6 @@
 	}
 	
 	module.exports = ReactPropTypes;
-
 
 /***/ },
 /* 148 */
@@ -17962,7 +17945,7 @@
 	function handleTopLevelWithoutPath(bookKeeping) {
 	  var topLevelTarget = ReactMount.getFirstReactDOM(getEventTarget(bookKeeping.nativeEvent)) || window;
 	
-	  // Loop through the hierarchy, in case there's any nested create_ticket_components.
+	  // Loop through the hierarchy, in case there's any nested components.
 	  // It's important that we build the array of ancestors before calling any
 	  // event handlers, because event handlers can modify the DOM, leading to
 	  // inconsistencies with ReactMount's node cache. See #1105.
@@ -18094,7 +18077,6 @@
 	};
 	
 	module.exports = ReactEventListener;
-
 
 /***/ },
 /* 159 */
@@ -18340,8 +18322,8 @@
 	}
 	
 	/**
-	 * Composite create_ticket_components are higher-level create_ticket_components that compose other composite
-	 * or native create_ticket_components.
+	 * Composite components are higher-level components that compose other composite
+	 * or native components.
 	 *
 	 * To create a new type of `ReactClass`, pass a specification of
 	 * your new class to `React.createClass`. The only requirement of your class
@@ -18642,7 +18624,7 @@
 	function validateTypeDef(Constructor, typeDef, location) {
 	  for (var propName in typeDef) {
 	    if (typeDef.hasOwnProperty(propName)) {
-	      // use a warning instead of an invariant so create_ticket_components
+	      // use a warning instead of an invariant so components
 	      // don't show up in prod but not in __DEV__
 	      process.env.NODE_ENV !== 'production' ? warning(typeof typeDef[propName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', Constructor.displayName || 'ReactClass', ReactPropTypeLocationNames[location], propName) : undefined;
 	    }
@@ -18946,7 +18928,7 @@
 	assign(ReactClassComponent.prototype, ReactComponent.prototype, ReactClassMixin);
 	
 	/**
-	 * Module for creating composite create_ticket_components.
+	 * Module for creating composite components.
 	 *
 	 * @class ReactClass
 	 */
@@ -19047,7 +19029,6 @@
 	};
 	
 	module.exports = ReactClass;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -21519,7 +21500,7 @@
 	      if (fnName === '_renderNewRootComponent' || fnName === 'flushBatchedUpdates') {
 	        // A "measurement" is a set of metrics recorded for each flush. We want
 	        // to group the metrics for a given flush together so we can look at the
-	        // create_ticket_components that rendered and the DOM operations that actually
+	        // components that rendered and the DOM operations that actually
 	        // happened to determine the amount of "wasted work" performed.
 	        ReactDefaultPerf._allMeasurements.push({
 	          exclusive: {},
@@ -21620,7 +21601,6 @@
 	};
 	
 	module.exports = ReactDefaultPerf;
-
 
 /***/ },
 /* 183 */
@@ -21755,7 +21735,7 @@
 	
 	      var displayName = measurement.displayNames[id];
 	
-	      // Inclusive time is not useful for many create_ticket_components without knowing where
+	      // Inclusive time is not useful for many components without knowing where
 	      // they are instantiated. So we aggregate inclusive time with both the
 	      // owner and current displayName as the key.
 	      inclusiveKey = displayName.owner + ' > ' + displayName.current;
@@ -21791,7 +21771,7 @@
 	}
 	
 	function getUnchangedComponents(measurement) {
-	  // For a given reconcile, look at which create_ticket_components did not actually
+	  // For a given reconcile, look at which components did not actually
 	  // render anything to the DOM and return a mapping of their ID to
 	  // the amount of time it took to render the entire subtree.
 	  var cleanComponents = {};
@@ -21827,7 +21807,6 @@
 	};
 	
 	module.exports = ReactDefaultPerfAnalysis;
-
 
 /***/ },
 /* 184 */
@@ -22663,7 +22642,7 @@
 	    var validType = typeof type === 'string' || typeof type === 'function';
 	    // We warn in this case but don't throw. We expect the element creation to
 	    // succeed and there will likely be errors in render.
-	    process.env.NODE_ENV !== 'production' ? warning(validType, 'React.createElement: type should not be null, undefined, boolean, or ' + 'number. It should be a string (for DOM elements) or a ReactClass ' + '(for composite create_ticket_components).%s', getDeclarationErrorAddendum()) : undefined;
+	    process.env.NODE_ENV !== 'production' ? warning(validType, 'React.createElement: type should not be null, undefined, boolean, or ' + 'number. It should be a string (for DOM elements) or a ReactClass ' + '(for composite components).%s', getDeclarationErrorAddendum()) : undefined;
 	
 	    var element = ReactElement.createElement.apply(this, arguments);
 	
@@ -22724,7 +22703,6 @@
 	};
 	
 	module.exports = ReactElementValidator;
-	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
 
 /***/ },
@@ -22898,106 +22876,119 @@
 /* 208 */,
 /* 209 */,
 /* 210 */,
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';var React=__webpack_require__(41);var ModalHeader=__webpack_require__(212);var ModalBody=__webpack_require__(213);var ModalFooter=__webpack_require__(225);var Modal=React.createClass({displayName:'Modal',childContextTypes:{translations:React.PropTypes.object},getChildContext:function getChildContext(){return{translations:this.props.translations};},propTypes:{dataSource:React.PropTypes.object.isRequired,translations:React.PropTypes.object.isRequired,columns:React.PropTypes.array.isRequired},componentDidMount:function componentDidMount(){jQuery(".btn-blue").corner('15px');},render:function render(){return React.createElement('div',{className:'modal',id:this.props.id,role:'dialog'},React.createElement('div',{className:'modal-dialog modal-fluid'},React.createElement('div',{className:'modal-content'},React.createElement(ModalHeader,{translations:this.props.translations}),React.createElement(ModalBody,{columns:this.props.columns,dataSource:this.props.dataSource}),React.createElement(ModalFooter,{translations:this.props.translations}))));}});module.exports=Modal;
-
-/***/ },
-/* 212 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";var React=__webpack_require__(41);var ModalHeader=React.createClass({displayName:"ModalHeader",propTypes:{translations:React.PropTypes.object.isRequired},render:function render(){return React.createElement("div",{className:"modal-header"},React.createElement("button",{type:"button",className:"close","data-dismiss":"modal"},"×"),React.createElement("div",{className:"title"},React.createElement("h4",null,this.props.translations.modal_title)));}});module.exports=ModalHeader;
-
-/***/ },
+/* 211 */,
+/* 212 */,
 /* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var FilterRow=__webpack_require__(214);var SortableRow=__webpack_require__(220);var Grid=__webpack_require__(222);var ModalBody=React.createClass({displayName:'ModalBody',propTypes:{dataSource:React.PropTypes.object.isRequired,columns:React.PropTypes.array.isRequired},getInitialState:function getInitialState(){return{filters:{},sort:{}};},onFilterChange:function onFilterChange(field,value){var filters=this.state.filters;filters[field]=value;this.setState({filters:filters});},onSortChange:function onSortChange(field,orderType){var sort=this.state.sort;sort.field=field;sort.orderType=orderType;this.setState({sort:sort});},render:function render(){return React.createElement('div',{className:'modal-body'},React.createElement('div',{className:'col-lg-12 grid grid-full-height'},React.createElement(FilterRow,{dataSource:this.props.dataSource,columns:this.props.columns,onFilterChange:this.onFilterChange}),React.createElement(SortableRow,{dataSource:this.props.dataSource,columns:this.props.columns,onSortChange:this.onSortChange}),React.createElement(Grid,{sort:this.state.sort,filters:this.state.filters,columns:this.props.columns,dataSource:this.props.dataSource,tickets:this.props.dataSource.getTicketsFiltered()})));}});module.exports=ModalBody;
+	'use strict';var React=__webpack_require__(41);var ModalHeader=__webpack_require__(214);var ModalBody=__webpack_require__(215);var ModalFooter=__webpack_require__(227);var Modal=React.createClass({displayName:'Modal',childContextTypes:{translations:React.PropTypes.object},getChildContext:function getChildContext(){return{translations:this.props.translations};},propTypes:{dataSource:React.PropTypes.object.isRequired,translations:React.PropTypes.object.isRequired,columns:React.PropTypes.array.isRequired},componentDidMount:function componentDidMount(){jQuery(".btn-blue").corner('15px');},render:function render(){return React.createElement('div',{className:'modal',id:this.props.id,role:'dialog'},React.createElement('div',{className:'modal-dialog modal-fluid'},React.createElement('div',{className:'modal-content'},React.createElement(ModalHeader,{translations:this.props.translations}),React.createElement(ModalBody,{columns:this.props.columns,dataSource:this.props.dataSource}),React.createElement(ModalFooter,{translations:this.props.translations}))));}});module.exports=Modal;
 
 /***/ },
 /* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var FilterColumn=__webpack_require__(215);var FilterRow=React.createClass({displayName:'FilterRow',propTypes:{columns:React.PropTypes.array.isRequired,onFilterChange:React.PropTypes.func.isRequired},render:function render(){var columns=this.props.columns.map(function(column){return React.createElement(FilterColumn,{dataSource:this.props.dataSource,key:column.field,onFilterChange:this.props.onFilterChange,options:column.options?column.options:this.props.dataSource.getListByField(column.field),colSize:column.colSize,field:column.field,type:column.filterType});}.bind(this));return React.createElement('div',{className:'filter-place clearfix'},columns);}});module.exports=FilterRow;
+	"use strict";var React=__webpack_require__(41);var ModalHeader=React.createClass({displayName:"ModalHeader",propTypes:{translations:React.PropTypes.object.isRequired},render:function render(){return React.createElement("div",{className:"modal-header"},React.createElement("button",{type:"button",className:"close","data-dismiss":"modal"},"×"),React.createElement("div",{className:"title"},React.createElement("h4",null,this.props.translations.modal_title)));}});module.exports=ModalHeader;
 
 /***/ },
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var DropDown=__webpack_require__(216);var InputAutocomplete=__webpack_require__(219);var FilterColumn=React.createClass({displayName:'FilterColumn',propTypes:{options:React.PropTypes.array.isRequired,colSize:React.PropTypes.number.isRequired,type:React.PropTypes.string.isRequired,field:React.PropTypes.string.isRequired,onFilterChange:React.PropTypes.func.isRequired},render:function render(){var colSize=this.props.colSize;var mainClassName='col-lg-'+colSize+' col-md-'+colSize+' col-sm-'+colSize+' col-xs-'+colSize+' nopadding';var html=React.createElement('div',{className:mainClassName});switch(this.props.type){case'empty':{break;}case'textbox':{html=React.createElement('div',{className:mainClassName},React.createElement(InputAutocomplete,{options:this.props.options,field:this.props.field,onFilterChange:this.props.onFilterChange}));break;}case'multiselect':{html=React.createElement('div',{className:mainClassName},React.createElement(DropDown,{options:this.props.options,field:this.props.field,onFilterChange:this.props.onFilterChange}));break;}default:{break;}}return html;}});module.exports=FilterColumn;
+	'use strict';var React=__webpack_require__(41);var FilterRow=__webpack_require__(216);var SortableRow=__webpack_require__(222);var Grid=__webpack_require__(224);var ModalBody=React.createClass({displayName:'ModalBody',propTypes:{dataSource:React.PropTypes.object.isRequired,columns:React.PropTypes.array.isRequired},getInitialState:function getInitialState(){return{filters:{},sort:{}};},onFilterChange:function onFilterChange(field,value){var filters=this.state.filters;filters[field]=value;this.setState({filters:filters});},onSortChange:function onSortChange(field,orderType){var sort=this.state.sort;sort.field=field;sort.orderType=orderType;this.setState({sort:sort});},render:function render(){return React.createElement('div',{className:'modal-body'},React.createElement('div',{className:'col-lg-12 grid grid-full-height'},React.createElement(FilterRow,{dataSource:this.props.dataSource,columns:this.props.columns,onFilterChange:this.onFilterChange}),React.createElement(SortableRow,{dataSource:this.props.dataSource,columns:this.props.columns,onSortChange:this.onSortChange}),React.createElement(Grid,{sort:this.state.sort,filters:this.state.filters,columns:this.props.columns,dataSource:this.props.dataSource,tickets:this.props.dataSource.getTicketsFiltered()})));}});module.exports=ModalBody;
 
 /***/ },
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var OpenerBtn=__webpack_require__(217);var DropList=__webpack_require__(218);var DropDown=React.createClass({displayName:'DropDown',propTypes:{options:React.PropTypes.array.isRequired,field:React.PropTypes.string.isRequired,onFilterChange:React.PropTypes.func.isRequired},componentDidMount:function componentDidMount(){$('body').on('click',this.resetDropdown);},resetDropdown:function resetDropdown(e){var openerBtnNotClicked=!$(e.target).hasClass('dropdown-toggle')&&!$(e.target).parent(".dropdown-toggle").length;var dropDwonElementNotClicked=!$(e.target).hasClass('dropdown-element')&&!$(e.target).parent(".dropdown-element").length;if(openerBtnNotClicked&&dropDwonElementNotClicked){this.setState({opened:false});}},getInitialState:function getInitialState(){var state={opened:false};state.selectedItems=[];return state;},toggleButton:function toggleButton(){this.setState({opened:!this.state.opened});},itemClick:function itemClick(id){var selecteds=this.state.selectedItems;var index=selecteds.indexOf(id);if(index===-1){selecteds.push(id);}else{selecteds.splice(index,1);}this.setState({selectedItems:selecteds});this.props.onFilterChange(this.props.field,selecteds);},render:function render(){var options=this.props.options;return React.createElement('div',{className:'filter-item'},React.createElement('div',{className:'multiple-filter-select'},React.createElement('div',{className:'btn-group'},React.createElement(OpenerBtn,{onClick:this.toggleButton,selecteds:this.state.selectedItems},' '),React.createElement(DropList,{handleItemClick:this.itemClick,selecteds:this.state.selectedItems,options:this.props.options,opened:this.state.opened}))));}});module.exports=DropDown;
+	'use strict';var React=__webpack_require__(41);var FilterColumn=__webpack_require__(217);var FilterRow=React.createClass({displayName:'FilterRow',propTypes:{columns:React.PropTypes.array.isRequired,onFilterChange:React.PropTypes.func.isRequired},render:function render(){var columns=this.props.columns.map(function(column){return React.createElement(FilterColumn,{dataSource:this.props.dataSource,key:column.field,onFilterChange:this.props.onFilterChange,options:column.options?column.options:this.props.dataSource.getListByField(column.field),colSize:column.colSize,field:column.field,type:column.filterType});}.bind(this));return React.createElement('div',{className:'filter-place clearfix'},columns);}});module.exports=FilterRow;
 
 /***/ },
 /* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var OpenerBtn=React.createClass({displayName:'OpenerBtn',contextTypes:{translations:React.PropTypes.object},propTypes:{selecteds:React.PropTypes.array.isRequired,onClick:React.PropTypes.func.isRequired},render:function render(){var selectedItems=this.props.selecteds;var buttonText=selectedItems.length?selectedItems.length+(' '+this.context.translations.selected):this.context.translations.all;return React.createElement('button',{type:'button',onClick:this.props.onClick,className:'btn btn-default dropdown-toggle'},buttonText,' ',React.createElement('span',{className:'caret'}));}});module.exports=OpenerBtn;
+	'use strict';var React=__webpack_require__(41);var DropDown=__webpack_require__(218);var InputAutocomplete=__webpack_require__(221);var FilterColumn=React.createClass({displayName:'FilterColumn',propTypes:{options:React.PropTypes.array.isRequired,colSize:React.PropTypes.number.isRequired,type:React.PropTypes.string.isRequired,field:React.PropTypes.string.isRequired,onFilterChange:React.PropTypes.func.isRequired},render:function render(){var colSize=this.props.colSize;var mainClassName='col-lg-'+colSize+' col-md-'+colSize+' col-sm-'+colSize+' col-xs-'+colSize+' nopadding';var html=React.createElement('div',{className:mainClassName});switch(this.props.type){case'empty':{break;}case'textbox':{html=React.createElement('div',{className:mainClassName},React.createElement(InputAutocomplete,{options:this.props.options,field:this.props.field,onFilterChange:this.props.onFilterChange}));break;}case'multiselect':{html=React.createElement('div',{className:mainClassName},React.createElement(DropDown,{options:this.props.options,field:this.props.field,onFilterChange:this.props.onFilterChange}));break;}default:{break;}}return html;}});module.exports=FilterColumn;
 
 /***/ },
 /* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var DropList=React.createClass({displayName:'DropList',propTypes:{selecteds:React.PropTypes.array.isRequired,options:React.PropTypes.array.isRequired,opened:React.PropTypes.bool.isRequired,handleItemClick:React.PropTypes.func.isRequired},render:function render(){var options=this.props.options;var isShown=this.props.opened?'opened':'closed';var selectedItems=this.props.selecteds;return React.createElement('ul',{className:'dropdown-menu '+isShown},options.map(function(value){var isActive=selectedItems.indexOf(value.id)!==-1?'glyphicon-ok':'empty';return React.createElement('li',{onClick:this.props.handleItemClick.bind(null,value.id),key:value.id},React.createElement('a',{className:'dropdown-element'},' ',React.createElement('i',{className:'glyphicon '+isActive}),' ',value.name));},this));}});module.exports=DropList;
+	'use strict';var React=__webpack_require__(41);var OpenerBtn=__webpack_require__(219);var DropList=__webpack_require__(220);var DropDown=React.createClass({displayName:'DropDown',propTypes:{options:React.PropTypes.array.isRequired,field:React.PropTypes.string.isRequired,onFilterChange:React.PropTypes.func.isRequired},componentDidMount:function componentDidMount(){$('body').on('click',this.resetDropdown);},resetDropdown:function resetDropdown(e){var openerBtnNotClicked=!$(e.target).hasClass('dropdown-toggle')&&!$(e.target).parent(".dropdown-toggle").length;var dropDwonElementNotClicked=!$(e.target).hasClass('dropdown-element')&&!$(e.target).parent(".dropdown-element").length;if(openerBtnNotClicked&&dropDwonElementNotClicked){this.setState({opened:false});}},getInitialState:function getInitialState(){var state={opened:false};state.selectedItems=[];return state;},toggleButton:function toggleButton(){this.setState({opened:!this.state.opened});},itemClick:function itemClick(id){var selecteds=this.state.selectedItems;var index=selecteds.indexOf(id);if(index===-1){selecteds.push(id);}else{selecteds.splice(index,1);}this.setState({selectedItems:selecteds});this.props.onFilterChange(this.props.field,selecteds);},render:function render(){var options=this.props.options;return React.createElement('div',{className:'filter-item'},React.createElement('div',{className:'multiple-filter-select'},React.createElement('div',{className:'btn-group'},React.createElement(OpenerBtn,{onClick:this.toggleButton,selecteds:this.state.selectedItems},' '),React.createElement(DropList,{handleItemClick:this.itemClick,selecteds:this.state.selectedItems,options:this.props.options,opened:this.state.opened}))));}});module.exports=DropDown;
 
 /***/ },
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var InputAutocomplete=React.createClass({displayName:'InputAutocomplete',contextTypes:{translations:React.PropTypes.object},componentDidMount:function componentDidMount(){$('body').on('click',this.resetAutoComplete);},getInitialState:function getInitialState(){return{opened:false,search:null};},resetAutoComplete:function resetAutoComplete(e){var autocompleteNotClicked=!$(e.target).hasClass('autocomplete')&&!$(e.target).parent(".autocomplete").length;if(autocompleteNotClicked){this.setState({opened:false});}},handleSelect:function handleSelect(option){this.refs.filterInput.value=option;this.handleChange(false);},handleChange:function handleChange(toOpen){var value=this.refs.filterInput.value;this.setState({search:value});this.props.onFilterChange(this.props.field,value);toOpen=toOpen||false;if(toOpen&&value){this.setState({opened:true});}else{this.setState({opened:false});}},mouseOver:function mouseOver(e){if($(e.target).data('index')!==undefined){this.setState({active:$(e.target).data('index')});}},inputOnKeyUp:function inputOnKeyUp(options,e){e.preventDefault();if(this.state.opened&&options.length){if(!Number(this.state.active)){this.setState({active:0});}//up
-	if(e.keyCode==38){var nextIdx=this.state.active-1>=0?this.state.active-1:options.length-1;this.setState({active:nextIdx});//down
-	}else if(e.keyCode==40){var nextIdx=this.state.active+1>=options.length?0:this.state.active+1;this.setState({active:nextIdx});//enter
-	}else if(e.keyCode==13){this.handleSelect(options[this.state.active]);}}},filterList:function filterList(options){var limit=0;return options.filter(function(option){if(limit>10){return false;}var found=true;if(typeof option=='string'){option=option.toLowerCase();}var search=this.state.search;if(this.state.search){search=this.state.search.toLowerCase();}if(option.indexOf(this.state.search)===-1){found=false;}if(found){limit++;}return found;}.bind(this));},highlight:function highlight(option){var modified=option.replace(this.state.search,'<strong>'+this.state.search+'</strong>');return modified;},render:function render(){//filter
-	var optionsFiltered=[];var list=optionsFiltered=this.filterList(this.props.options);list=list.map(function(option,idx){return React.createElement('li',{key:option+"_"+idx,'data-index':idx,onClick:this.handleSelect.bind(null,option),className:this.state.active==idx?'active':'',dangerouslySetInnerHTML:{__html:this.highlight(option)}});}.bind(this));if(list.length){var autocompleteList=React.createElement('div',{className:'autocomplete '+(this.state.opened?' opened':' closed')},React.createElement('ul',{onMouseOver:this.mouseOver},list));}else{var autocompleteList="";}return React.createElement('div',{className:'filter-item'},React.createElement('input',{ref:'filterInput',onChange:this.handleChange.bind(null,true),type:'text',className:'form-control filter-input',placeholder:this.context.translations.all,onKeyUp:this.inputOnKeyUp.bind(null,optionsFiltered)}),autocompleteList);}});module.exports=InputAutocomplete;
+	'use strict';var React=__webpack_require__(41);var OpenerBtn=React.createClass({displayName:'OpenerBtn',contextTypes:{translations:React.PropTypes.object},propTypes:{selecteds:React.PropTypes.array.isRequired,onClick:React.PropTypes.func.isRequired},render:function render(){var selectedItems=this.props.selecteds;var buttonText=selectedItems.length?selectedItems.length+(' '+this.context.translations.selected):this.context.translations.all;return React.createElement('button',{type:'button',onClick:this.props.onClick,className:'btn btn-default dropdown-toggle'},buttonText,' ',React.createElement('span',{className:'caret'}));}});module.exports=OpenerBtn;
 
 /***/ },
 /* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var SortableColumn=__webpack_require__(221);var SortableRow=React.createClass({displayName:'SortableRow',propTypes:{dataSource:React.PropTypes.object.isRequired,columns:React.PropTypes.array.isRequired,onSortChange:React.PropTypes.func.isRequired},render:function render(){var columns=this.props.columns.map(function(column){return React.createElement(SortableColumn,{key:column.field,onSortChange:this.props.onSortChange,colSize:column.colSize,field:column.field,title:column.title});}.bind(this));return React.createElement('div',{className:'staff-grid-header clearfix'},React.createElement('div',{className:'staff-grid-header-responsive'},columns));}});module.exports=SortableRow;
+	'use strict';var React=__webpack_require__(41);var DropList=React.createClass({displayName:'DropList',propTypes:{selecteds:React.PropTypes.array.isRequired,options:React.PropTypes.array.isRequired,opened:React.PropTypes.bool.isRequired,handleItemClick:React.PropTypes.func.isRequired},render:function render(){var options=this.props.options;var isShown=this.props.opened?'opened':'closed';var selectedItems=this.props.selecteds;return React.createElement('ul',{className:'dropdown-menu '+isShown},options.map(function(value){var isActive=selectedItems.indexOf(value.id)!==-1?'glyphicon-ok':'empty';return React.createElement('li',{onClick:this.props.handleItemClick.bind(null,value.id),key:value.id},React.createElement('a',{className:'dropdown-element'},' ',React.createElement('i',{className:'glyphicon '+isActive}),' ',value.name));},this));}});module.exports=DropList;
 
 /***/ },
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var SortableColumn=React.createClass({displayName:'SortableColumn',propTypes:{field:React.PropTypes.string.isRequired,title:React.PropTypes.string.isRequired,colSize:React.PropTypes.number.isRequired,onSortChange:React.PropTypes.func.isRequired},getInitialState:function getInitialState(){return{orderType:this.props.orderType||false};},handleChange:function handleChange(){this.setState({orderType:!this.state.orderType});this.props.onSortChange(this.props.field,this.state.orderType);},render:function render(){var colSize=this.props.colSize;var mainClassName='col-lg-'+colSize+' col-md-'+colSize+' col-sm-'+colSize+' col-xs-'+colSize+' nopadding';var orderIconClassName=this.state.orderType?' rotate-180':'';orderIconClassName+=orderIconClassName+' grid-sort-ico';return React.createElement('div',{className:mainClassName},React.createElement('div',{className:'grid-header grid-col-header',onClick:this.handleChange},React.createElement('span',{className:'grid-header-title'},this.props.title),React.createElement('div',{className:orderIconClassName})));}});module.exports=SortableColumn;
+	'use strict';var React=__webpack_require__(41);var InputAutocomplete=React.createClass({displayName:'InputAutocomplete',contextTypes:{translations:React.PropTypes.object},componentDidMount:function componentDidMount(){$('body').on('click',this.resetAutoComplete);},getInitialState:function getInitialState(){return{opened:false,search:null};},resetAutoComplete:function resetAutoComplete(e){var autocompleteNotClicked=!$(e.target).hasClass('autocomplete')&&!$(e.target).parent(".autocomplete").length;if(autocompleteNotClicked){this.setState({opened:false});}},handleSelect:function handleSelect(option){this.refs.filterInput.value=option;this.handleChange(false);},handleChange:function handleChange(toOpen){var value=this.refs.filterInput.value;this.setState({search:value});this.props.onFilterChange(this.props.field,value);toOpen=toOpen||false;if(toOpen&&value){this.setState({opened:true});}else{this.setState({opened:false});}},mouseOver:function mouseOver(e){if($(e.target).data('index')!==undefined){this.setState({active:$(e.target).data('index')});}},inputOnKeyUp:function inputOnKeyUp(options,e){e.preventDefault();if(this.state.opened&&options.length){if(!Number(this.state.active)){this.setState({active:0});}//up
+	if(e.keyCode==38){var nextIdx=this.state.active-1>=0?this.state.active-1:options.length-1;this.setState({active:nextIdx});//down
+	}else if(e.keyCode==40){var nextIdx=this.state.active+1>=options.length?0:this.state.active+1;this.setState({active:nextIdx});//enter
+	}else if(e.keyCode==13){this.handleSelect(options[this.state.active]);}}},filterList:function filterList(options){var limit=0;return options.filter(function(option){if(limit>10){return false;}var found=true;if(typeof option=='string'){option=option.toLowerCase();}var search=this.state.search;if(this.state.search){search=this.state.search.toLowerCase();}if(option.indexOf(this.state.search)===-1){found=false;}if(found){limit++;}return found;}.bind(this));},// highlight: function(option){
+	//   if(!this.state.search){
+	//     return "";
+	//   }
+	//
+	//   var modified = option.replace('<', '&lt;');
+	//   modified = option.replace('>', '&gt;');
+	//
+	//   modified = option.replace(this.state.search,'<strong>' + this.state.search + '</strong>');
+	//   return modified;
+	// },
+	render:function render(){//filter
+	var optionsFiltered=[];var list=optionsFiltered=this.filterList(this.props.options);list=list.map(function(option,idx){return React.createElement('li',{key:option+"_"+idx,'data-index':idx,onClick:this.handleSelect.bind(null,option),className:this.state.active==idx?'active':''},option);}.bind(this));if(list.length){var autocompleteList=React.createElement('div',{className:'autocomplete '+(this.state.opened?' opened':' closed')},React.createElement('ul',{onMouseOver:this.mouseOver},list));}else{var autocompleteList="";}return React.createElement('div',{className:'filter-item'},React.createElement('input',{ref:'filterInput',onChange:this.handleChange.bind(null,true),type:'text',className:'form-control filter-input',placeholder:this.context.translations.all,onKeyUp:this.inputOnKeyUp.bind(null,optionsFiltered)}),autocompleteList);}});module.exports=InputAutocomplete;
 
 /***/ },
 /* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var React=__webpack_require__(41);var GridColumn=__webpack_require__(223);var GridRow=__webpack_require__(224);var Grid=React.createClass({displayName:'Grid',componentDidMount:function componentDidMount(){jQuery('#scroll-wrapper').scrollbar();},isFilterFound:function isFilterFound(ticket,filter){return ticket.toLowerCase().indexOf(filter.toLowerCase())===-1;},filterTickets:function filterTickets(tickets,filters,sort){tickets=tickets.filter(function(ticket){var found=true;var isTicketExistInFilter;for(var i in filters){if(!filters[i]){continue;}ticket[i]=ticket[i]||'';//multiselect filter
-	if(Array.isArray(filters[i])){isTicketExistInFilter=filters[i].indexOf(parseInt(ticket[i]))===-1;if(filters[i].length&&isTicketExistInFilter){found=false;break;}//textbox filter
-	}else if(filters[i]&&this.isFilterFound(ticket[i],filters[i])){found=false;break;}}return found;}.bind(this));var sortArray=Object.keys(sort);if(sortArray.length){tickets.sort(function(ticket1,ticket2){if(sort.orderType==true){var object1=ticket1;var object2=ticket2;}else{var object1=ticket2;var object2=ticket1;}if(Number(object1[sort.field])&&Number(object2[sort.field])){object1[sort.field]=Number(object1[sort.field]);object2[sort.field]=Number(object2[sort.field]);};if(object1[sort.field]>object2[sort.field]){return 1;}else if(object1[sort.field]<object2[sort.field]){return-1;}return 0;});}return tickets;},render:function render(){var tickets=this.filterTickets(this.props.tickets,this.props.filters,this.props.sort);var rows=tickets.map(function(ticket,idx_row){var columns=this.props.columns.map(function(column,idx){var optionalProps={};if(column.link&&column.link==true){optionalProps.link='https://'+ticket.instanceMessage+'/ticket/'+ticket.id;}return React.createElement(GridColumn,_extends({key:ticket.id+"_"+column.field+"_"+idx,id:ticket[column.field],colSize:column.colSize},optionalProps,{field:column.field}),' ',ticket[column.contentField],' ');}.bind(this));return React.createElement(GridRow,{key:ticket.id+'_'+idx_row},columns);}.bind(this));return React.createElement('div',{id:'scroll-wrapper',className:'staff-table clearfix'},rows);}});module.exports=Grid;
+	'use strict';var React=__webpack_require__(41);var SortableColumn=__webpack_require__(223);var SortableRow=React.createClass({displayName:'SortableRow',propTypes:{dataSource:React.PropTypes.object.isRequired,columns:React.PropTypes.array.isRequired,onSortChange:React.PropTypes.func.isRequired},render:function render(){var columns=this.props.columns.map(function(column){return React.createElement(SortableColumn,{key:column.field,onSortChange:this.props.onSortChange,colSize:column.colSize,field:column.field,title:column.title});}.bind(this));return React.createElement('div',{className:'staff-grid-header clearfix'},React.createElement('div',{className:'staff-grid-header-responsive'},columns));}});module.exports=SortableRow;
 
 /***/ },
 /* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var React=__webpack_require__(41);var GridColumn=React.createClass({displayName:'GridColumn',propTypes:{id:React.PropTypes.any,colSize:React.PropTypes.number.isRequired,field:React.PropTypes.string.isRequired,link:React.PropTypes.string},render:function render(){var colSize=this.props.colSize;var mainClassName='col-lg-'+colSize+' col-md-'+colSize+' col-sm-'+colSize+' col-xs-'+colSize+' nopadding';var content=this.props.children;if(this.props.link){content=React.createElement('a',{target:'_blank',href:this.props.link},this.props.children);}return React.createElement('div',{'data-id':this.props.id,className:mainClassName},React.createElement('div',{className:'grid-col-item'},React.createElement('div',{className:'grid-staff-name pull-left'},content)));}});module.exports=GridColumn;
+	'use strict';var React=__webpack_require__(41);var SortableColumn=React.createClass({displayName:'SortableColumn',propTypes:{field:React.PropTypes.string.isRequired,title:React.PropTypes.string.isRequired,colSize:React.PropTypes.number.isRequired,onSortChange:React.PropTypes.func.isRequired},getInitialState:function getInitialState(){return{orderType:this.props.orderType||false};},handleChange:function handleChange(){this.setState({orderType:!this.state.orderType});this.props.onSortChange(this.props.field,this.state.orderType);},render:function render(){var colSize=this.props.colSize;var mainClassName='col-lg-'+colSize+' col-md-'+colSize+' col-sm-'+colSize+' col-xs-'+colSize+' nopadding';var orderIconClassName=this.state.orderType?' rotate-180':'';orderIconClassName+=orderIconClassName+' grid-sort-ico';return React.createElement('div',{className:mainClassName},React.createElement('div',{className:'grid-header grid-col-header',onClick:this.handleChange},React.createElement('span',{className:'grid-header-title'},this.props.title),React.createElement('div',{className:orderIconClassName})));}});module.exports=SortableColumn;
 
 /***/ },
 /* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var React=__webpack_require__(41);var GridRow=React.createClass({displayName:"GridRow",propTypes:{},render:function render(){return React.createElement("div",{className:"grid-row clearfix"},React.createElement("div",{className:"grid-row-responsive grid-last-row"},this.props.children));}});module.exports=GridRow;
+	'use strict';var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var React=__webpack_require__(41);var GridColumn=__webpack_require__(225);var GridRow=__webpack_require__(226);var Grid=React.createClass({displayName:'Grid',componentDidMount:function componentDidMount(){jQuery('#scroll-wrapper').scrollbar();},isFilterFound:function isFilterFound(ticket,filter){return ticket.toLowerCase().indexOf(filter.toLowerCase())===-1;},filterTickets:function filterTickets(tickets,filters,sort){tickets=tickets.filter(function(ticket){var found=true;var isTicketExistInFilter;for(var i in filters){if(!filters[i]){continue;}ticket[i]=ticket[i]||'';//multiselect filter
+	if(Array.isArray(filters[i])){isTicketExistInFilter=filters[i].indexOf(parseInt(ticket[i]))===-1;if(filters[i].length&&isTicketExistInFilter){found=false;break;}//textbox filter
+	}else if(filters[i]&&this.isFilterFound(ticket[i],filters[i])){found=false;break;}}return found;}.bind(this));var sortArray=Object.keys(sort);if(sortArray.length){tickets.sort(function(ticket1,ticket2){if(sort.orderType==true){var object1=ticket1;var object2=ticket2;}else{var object1=ticket2;var object2=ticket1;}if(Number(object1[sort.field])&&Number(object2[sort.field])){object1[sort.field]=Number(object1[sort.field]);object2[sort.field]=Number(object2[sort.field]);};if(object1[sort.field]>object2[sort.field]){return 1;}else if(object1[sort.field]<object2[sort.field]){return-1;}return 0;});}return tickets;},render:function render(){var tickets=this.filterTickets(this.props.tickets,this.props.filters,this.props.sort);var rows=tickets.map(function(ticket,idx_row){var columns=this.props.columns.map(function(column,idx){var optionalProps={};if(column.link&&column.link==true){optionalProps.link='https://'+ticket.instanceMessage+'/ticket/'+ticket.id;}return React.createElement(GridColumn,_extends({key:ticket.id+"_"+column.field+"_"+idx,id:ticket[column.field],colSize:column.colSize},optionalProps,{field:column.field}),' ',ticket[column.contentField],' ');}.bind(this));return React.createElement(GridRow,{key:ticket.id+'_'+idx_row},columns);}.bind(this));return React.createElement('div',{id:'scroll-wrapper',className:'staff-table clearfix'},rows);}});module.exports=Grid;
 
 /***/ },
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var React=__webpack_require__(41);var ModalFooter=React.createClass({displayName:"ModalFooter",propTypes:{translations:React.PropTypes.object.isRequired},render:function render(){return React.createElement("div",{className:"modal-footer"},React.createElement("button",{type:"submit",className:"btn btn-blue button-close","data-dismiss":"modal"},this.props.translations.close));}});module.exports=ModalFooter;
+	'use strict';var React=__webpack_require__(41);var GridColumn=React.createClass({displayName:'GridColumn',propTypes:{id:React.PropTypes.any,colSize:React.PropTypes.number.isRequired,field:React.PropTypes.string.isRequired,link:React.PropTypes.string},render:function render(){var colSize=this.props.colSize;var mainClassName='col-lg-'+colSize+' col-md-'+colSize+' col-sm-'+colSize+' col-xs-'+colSize+' nopadding';var content=this.props.children;if(this.props.link){content=React.createElement('a',{target:'_blank',href:this.props.link},this.props.children);}return React.createElement('div',{'data-id':this.props.id,className:mainClassName},React.createElement('div',{className:'grid-col-item'},React.createElement('div',{className:'grid-staff-name pull-left'},content)));}});module.exports=GridColumn;
 
 /***/ },
 /* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";var React=__webpack_require__(41);var GridRow=React.createClass({displayName:"GridRow",propTypes:{},render:function render(){return React.createElement("div",{className:"grid-row clearfix"},React.createElement("div",{className:"grid-row-responsive grid-last-row"},this.props.children));}});module.exports=GridRow;
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";var React=__webpack_require__(41);var ModalFooter=React.createClass({displayName:"ModalFooter",propTypes:{translations:React.PropTypes.object.isRequired},render:function render(){return React.createElement("div",{className:"modal-footer"},React.createElement("button",{type:"submit",className:"btn btn-blue button-close","data-dismiss":"modal"},this.props.translations.close));}});module.exports=ModalFooter;
+
+/***/ },
+/* 228 */
 /***/ function(module, exports) {
 
-	"use strict";function DataSource(){this.getTickets=function(){return tickets;};this.getInstances=function(){return instances;};this.getPriorities=function(){return priorities;};this.getStatuses=function(){return statuses;};}DataSource.prototype.getStatusById=function(id){var statuses=this.getStatuses();for(var i in statuses){if(statuses[i].id==id){return statuses[i];}}return null;};DataSource.prototype.getPriorityById=function(id){var priors=this.getPriorities();for(var i in priors){if(priors[i].id==id){return priors[i];}}return null;};DataSource.prototype.getInstanceById=function(id){var instances=this.getInstances();return instances!=null&&instances[id]?instances[id]:null;};DataSource.prototype.getTicketsFiltered=function(){var tickets=this.getTickets();return tickets.map(function(ticket){var status=this.getStatusById(ticket.status);ticket.statusMessage="";if(status)ticket.statusMessage=status.name;var priority=this.getPriorityById(ticket.priority);if(priority)ticket.priorityMessage=priority.name;else ticket.priorityMessage="";ticket.instanceMessage=this.getInstanceById(ticket.instance_id);if(!ticket.assignee){ticket.assignee=translations.unassigned;}return ticket;}.bind(this));};DataSource.prototype.showInstances=function(){var instances=this.getInstances();var keys=Object.keys(instances);return keys.length>1;};Array.prototype.getUnique=function(){var u={},a=[];for(var i=0,l=this.length;i<l;++i){if(u.hasOwnProperty(this[i])||typeof this[i]=='string'&&u.hasOwnProperty(this[i].toLowerCase())){continue;}a.push(this[i]);u[this[i]]=1;}return a;};DataSource.prototype.getListByField=function(field){var tickets=this.getTicketsFiltered();tickets=tickets.filter(function(ticket){return ticket[field]?true:false;});var list=tickets.map(function(ticket){return ticket[field]?ticket[field]:null;});if(list.length)return list.getUnique();return[];};module.exports=new DataSource();
+	"use strict";function DataSource(){this.getTickets=function(){return tickets;};this.getInstances=function(){return instances;};this.getPriorities=function(){return priorities;};this.getStatuses=function(){return statuses;};}DataSource.prototype.getStatusById=function(id){var statuses=this.getStatuses();for(var i in statuses){if(statuses[i].id==id){return statuses[i];}}return null;};DataSource.prototype.getPriorityById=function(id){var priors=this.getPriorities();for(var i in priors){if(priors[i].id==id){return priors[i];}}return null;};DataSource.prototype.getInstanceById=function(id){var instances=this.getInstances();return instances!=null&&instances[id]?instances[id]:null;};DataSource.prototype.getTicketsFiltered=function(){var tickets=this.getTickets();return tickets.map(function(ticket){var status=this.getStatusById(ticket.status);ticket.statusMessage="";if(status)ticket.statusMessage=status.name;var priority=this.getPriorityById(ticket.priority);if(priority)ticket.priorityMessage=priority.name;else ticket.priorityMessage="";ticket.instanceMessage=this.getInstanceById(ticket.instance_id);if(!ticket.assignee){ticket.assignee=translations.unassigned;}return ticket;}.bind(this));};DataSource.prototype.showInstances=function(){var instances=this.getInstances();var keys=Object.keys(instances);return keys.length>1;};Array.prototype.getUnique=function(){var u={},a=[];for(var i=0,l=this.length;i<l;++i){if(u.hasOwnProperty(this[i])||typeof this[i]=='string'&&u.hasOwnProperty(this[i].toLowerCase())){continue;}a.push(this[i]);u[this[i]]=1;}return a;};DataSource.prototype.getListByField=function(field){var tickets=this.getTicketsFiltered();tickets=tickets.filter(function(ticket){return ticket[field]?true:false;});var list=tickets.map(function(ticket){return ticket[field]?ticket[field]:null;});if(list.length){return list.getUnique();}return[];};module.exports=new DataSource();
 
 /***/ }
 /******/ ]);

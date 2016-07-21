@@ -91,9 +91,9 @@ const InputField = React.createClass({
     //var errorMessage = "";
     delete this.props.errors[this.props.label];
     var formClass = "form-group ";
-    var inputSizeClass = this.props.size === 'md' ? "col-md-12" : "col-xs-6";
-    var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name} value={this.state.inputVal}></textarea>)
-                                        : (<input onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.label} name={this.props.name} value={this.state.inputVal} />);
+    var inputSizeClass = this.props.size === 'md' ? "col-md-12" : "col-xs-6 custom-field";
+    var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control"  name={this.props.name} value={this.state.inputVal}></textarea>)
+                                        : (<input onBlur={this.handleInput} onChange={this.handleInput} className="form-control" name={this.props.name} value={this.state.inputVal} />);
     var requiredSpan = (this.props.required == 1) ? (<span>*</span>) : "";
 
     if (this.state.isFieldTouched) {

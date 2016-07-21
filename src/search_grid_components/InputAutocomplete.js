@@ -102,10 +102,17 @@ var InputAutocomplete = React.createClass({
     }.bind(this));
   },
 
-  highlight: function(option){
-    var modified = option.replace(this.state.search,'<strong>' + this.state.search + '</strong>');
-    return modified;
-  },
+  // highlight: function(option){
+  //   if(!this.state.search){
+  //     return "";
+  //   }
+  //
+  //   var modified = option.replace('<', '&lt;');
+  //   modified = option.replace('>', '&gt;');
+  //
+  //   modified = option.replace(this.state.search,'<strong>' + this.state.search + '</strong>');
+  //   return modified;
+  // },
 
   render: function () {
 
@@ -119,8 +126,8 @@ var InputAutocomplete = React.createClass({
             data-index={idx}
             onClick={this.handleSelect.bind(null, option)}
             className={ this.state.active == idx ? 'active' : ''}
-            dangerouslySetInnerHTML={{__html: this.highlight(option)}}
         >
+          {option}
         </li>
       )
     }.bind(this));

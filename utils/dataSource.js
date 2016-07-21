@@ -101,8 +101,10 @@ DataSource.prototype.getListByField = function(field){
     return ticket[field] ? ticket[field] : null;
   });
 
-  if(list.length)
+  if(list.length){
     return list.getUnique();
+  }
+
 
   return [];
 };

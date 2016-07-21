@@ -289,9 +289,9 @@ select.form-control{
   margin-top: 10px;
 }
 
-.custom-field {
+/*.custom-field {
   height: 75px;
-}
+}*/
 
 .upload-element {
   margin-top: 40px;
@@ -437,4 +437,12 @@ select.form-control{
 .label.label-default {
   margin-right: 8px;
   display: inline-block;
+}
+
+.custom-field {
+  height: 87px;
+}
+
+.success-message .modal-body {
+  min-height: 10px;
 }

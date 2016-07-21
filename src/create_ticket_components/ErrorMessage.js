@@ -23,7 +23,7 @@ const ErrorMessage = React.createClass({
       <div ref={(c) => this._alert = c} className="alert alert-danger" role="alert">
         <button type="button" className="close" onClick={(e) => this.closeAlert(this._alert)}>
           <span aria-hidden="true">&times;</span></button>
-        <div dangerouslySetInnerHTML={{__html: this.props.errors}}/>
+        <div dangerouslySetInnerHTML={{__html: this.props.errors}}></div>
       </div>
     );
   }

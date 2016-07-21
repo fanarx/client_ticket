@@ -36,7 +36,8 @@ const CustomFieldsContainer = React.createClass({
         return (
           <SelectField onChange={this.props.onChange}
                        name={"customFields["+field.id+"]"}
-                       key={field.id} label={field.name}
+                       key={field.id}
+                       label={field.name}
                        options={selectOptions}
                        selectedDefault={field.value}
           />

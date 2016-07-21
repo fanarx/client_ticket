@@ -6,6 +6,10 @@ require('core-js/fn/object/assign');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const ModalBox = require('./create_ticket_components/ModalBox');
+window.eventEmitter = new (require('events').EventEmitter);
+
+
+
 
 /*
 var instances = [
@@ -945,6 +949,11 @@ var name = '2Requester';
 // };
 
 
+
+ window.setToken = function setToken(token) {
+   eventEmitter.emit('tokenChange', token);
+ };
+
 ReactDOM.render(
   <ModalBox title={translations.newTicketTitle}
             instances={instances}
@@ -953,6 +962,5 @@ ReactDOM.render(
             priorities={priorities}
             errorMessage={errorMessage}
             formAction = {formAction}
-            formValues={values}
-  />, document.getElementById('app')
+            formValues={values} />, document.getElementById('app')
 );
