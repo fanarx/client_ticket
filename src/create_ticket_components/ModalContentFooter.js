@@ -1,6 +1,7 @@
 var React = require('react');
 const InputField = require('./InputField');
 const InputFileContainer = require('./InputFileContainer');
+const CheckBoxField = require('./CheckBoxField');
 
 var ModalContentFooter = React.createClass({
 
@@ -10,7 +11,7 @@ var ModalContentFooter = React.createClass({
     errors: React.PropTypes.object.isRequired,
     subjectDefault: React.PropTypes.string,
     descriptionDefault: React.PropTypes.string,
-    notifyCustomerDefault: React.PropTypes.string
+    notifyCustomerDefault: React.PropTypes.any
   },
 
   getInitialState: function() {
@@ -62,11 +63,7 @@ var ModalContentFooter = React.createClass({
 
         <InputFileContainer errors={this.props.errors} />
 
-        <div className="col-md-12">
-            <div id="check-tick" onClick={this.handleCheckClick} className={checkBoxClass}></div>
-            <input name="notifyCustomer" ref="checkbox-input" className="checkbox-input" type="checkbox" defaultChecked={this.state.isSendEmailChecked} />
-            <label onClick={this.handleCheckClick}>Send Email Notification to Client</label>
-        </div>
+        <CheckBoxField checked={this.props.notifyCustomerDefault} name="notifyCustomer" label="Send Email Notification to Client" />
 
       </div>
     );

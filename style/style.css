@@ -431,6 +431,7 @@ select.form-control{
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   position: absolute;
+  z-index: -9999;
 
 }
 
@@ -443,6 +444,11 @@ select.form-control{
   height: 87px;
 }
 
-.success-message .modal-body {
-  min-height: 10px;
+#success-message .modal-body {
+  min-height: 50px;
+}
+
+#success-message .modal-dialog {
+  min-width: 100px;
+  width: auto;
 }

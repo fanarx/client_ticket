@@ -19,7 +19,7 @@ const MessageBox = React.createClass({
     return (
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="popup success-message">
+          <div className="popup">
             <MessageHeader title={this.props.title} onClose={this.handleClose} />
             <MessageBody message={this.props.message} />
             <MessageFooter onClose={this.handleClose} />

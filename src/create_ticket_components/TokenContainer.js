@@ -4,7 +4,8 @@ var React = require('react');
 var TokenContainer = React.createClass({
 
   propTypes : {
-    token: React.PropTypes.string
+    token: React.PropTypes.string,
+    name: React.PropTypes.string.isRequired
   },
 
   getInitialState: function() {
@@ -23,13 +24,13 @@ var TokenContainer = React.createClass({
 
   _eventEmitterHandler: function (payload) {
     this.setState({
-      token: payload
+      token: payload[this.props.name]
     })
   },
 
   render: function () {
     return (
-      <input type="hidden" value={this.state.token} name="token" />
+      <input type="hidden" value={this.state.token} name={this.props.name} />
     );
   }
 });

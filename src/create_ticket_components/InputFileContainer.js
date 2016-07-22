@@ -133,16 +133,22 @@ const InputFileContainer = React.createClass({
 
     return (
       <div className="col-xs-12">
-        <div className="reply-attachment" style={{paddingBottom: '15px', paddingTop: '10px'}}>
-          <button type="button" onClick={this.addInput} className="btn btn-white btn-reply-attachment"></button>
+        <div className="row">
+          <div className="col-xs-1">
+            <div className="reply-attachment" style={{paddingBottom: '15px', paddingTop: '10px'}}>
+              <button type="button" onClick={this.addInput} className="btn btn-white btn-reply-attachment"></button>
+            </div>
+          </div>
+          <div className="col-xs-11">
+            <InputList ref="input-list"
+                       inputs={this.state.inputs}
+                       inputLabels={this.state.inputLabels}
+                       onFileRemove={this.handleFileRemove}
+                       onChange={this.handleChange}
+                       errors={this.props.errors}
+            />
+          </div>
         </div>
-        <InputList ref="input-list"
-                   inputs={this.state.inputs}
-                   inputLabels={this.state.inputLabels}
-                   onFileRemove={this.handleFileRemove}
-                   onChange={this.handleChange}
-                   errors={this.props.errors}
-        />
       </div>
     );
   }

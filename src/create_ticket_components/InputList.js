@@ -28,11 +28,11 @@ const InputList = React.createClass({
       }
     );
 
-    if (inputs.length > 0) {
-      var labelBox = <div className="well">
-        {inputLabels}
-      </div>;
-    }
+    var labelBox = (
+       <div style={{ paddingLeft: '10px', paddingTop: '7px' }}>
+         {inputLabels}
+       </div>
+    );
 
     return (
       <div>

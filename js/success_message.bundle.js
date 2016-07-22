@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';__webpack_require__(1);__webpack_require__(2);__webpack_require__(3);__webpack_require__(4);var React=__webpack_require__(41);var ReactDOM=__webpack_require__(198);var MessageBox=__webpack_require__(229);ReactDOM.render(React.createElement(MessageBox,{title:"test title",message:"test message"}),document.getElementById('success-message'));
+	'use strict';__webpack_require__(1);__webpack_require__(2);__webpack_require__(3);__webpack_require__(4);var React=__webpack_require__(41);var ReactDOM=__webpack_require__(198);var MessageBox=__webpack_require__(231);ReactDOM.render(React.createElement(MessageBox,{title:'ll',message:'ll'}),document.getElementById('success-message'));
 
 /***/ },
 /* 1 */
@@ -22894,28 +22894,30 @@
 /* 226 */,
 /* 227 */,
 /* 228 */,
-/* 229 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';var React=__webpack_require__(41);var MessageHeader=__webpack_require__(230);var MessageBody=__webpack_require__(231);var MessageFooter=__webpack_require__(232);var MessageBox=React.createClass({displayName:'MessageBox',propTypes:{message:React.PropTypes.string.isRequired,title:React.PropTypes.string.isRequired},handleClose:function handleClose(){console.log('closing ...');},render:function render(){return React.createElement('div',{className:'modal-dialog'},React.createElement('div',{className:'modal-content'},React.createElement('div',{className:'popup success-message'},React.createElement(MessageHeader,{title:this.props.title,onClose:this.handleClose}),React.createElement(MessageBody,{message:this.props.message}),React.createElement(MessageFooter,{onClose:this.handleClose}))));}});module.exports=MessageBox;
-
-/***/ },
-/* 230 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";var React=__webpack_require__(41);function MessageHeader(_ref){var title=_ref.title;var onClose=_ref.onClose;return React.createElement("div",{className:"modal-header"},React.createElement("button",{onClick:onClose,type:"button",className:"close"},"×"),React.createElement("div",{className:"title"},React.createElement("h4",null,title)));}MessageHeader.propTypes={title:React.PropTypes.string.isRequired,onClose:React.PropTypes.func.isRequired};module.exports=MessageHeader;
-
-/***/ },
+/* 229 */,
+/* 230 */,
 /* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var React=__webpack_require__(41);function MessageBody(_ref){var message=_ref.message;return React.createElement("div",{className:"modal-body"},React.createElement("div",{dangerouslySetInnerHTML:{__html:message}}));}MessageBody.propTypes={message:React.PropTypes.string.isRequired};module.exports=MessageBody;
+	'use strict';var React=__webpack_require__(41);var MessageHeader=__webpack_require__(232);var MessageBody=__webpack_require__(233);var MessageFooter=__webpack_require__(234);var MessageBox=React.createClass({displayName:'MessageBox',propTypes:{message:React.PropTypes.string.isRequired,title:React.PropTypes.string.isRequired},handleClose:function handleClose(){console.log('closing ...');},render:function render(){return React.createElement('div',{className:'modal-dialog'},React.createElement('div',{className:'modal-content'},React.createElement('div',{className:'popup'},React.createElement(MessageHeader,{title:this.props.title,onClose:this.handleClose}),React.createElement(MessageBody,{message:this.props.message}),React.createElement(MessageFooter,{onClose:this.handleClose}))));}});module.exports=MessageBox;
 
 /***/ },
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";var React=__webpack_require__(41);function MessageFooter(_ref){var onClose=_ref.onClose;return React.createElement("div",{className:"modal-footer"},React.createElement("button",{onClick:onClose,type:"button",className:"btn btn-default"},"Close"));}MessageFooter.propTypes={onClose:React.PropTypes.func.isRequired};module.exports=MessageFooter;
+	"use strict";var React=__webpack_require__(41);function MessageHeader(_ref){var title=_ref.title;var onClose=_ref.onClose;return React.createElement("div",{className:"modal-header"},React.createElement("button",{onClick:onClose,type:"button",className:"close"},"×"),React.createElement("div",{className:"title"},React.createElement("h4",null,title)));}MessageHeader.propTypes={title:React.PropTypes.string.isRequired,onClose:React.PropTypes.func.isRequired};module.exports=MessageHeader;
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";var React=__webpack_require__(41);function MessageBody(_ref){var message=_ref.message;return React.createElement("div",{className:"modal-body"},React.createElement("div",{dangerouslySetInnerHTML:{__html:message}}));}MessageBody.propTypes={message:React.PropTypes.string.isRequired};module.exports=MessageBody;
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var React=__webpack_require__(41);var MessageFooter=React.createClass({displayName:'MessageFooter',propTypes:{onClose:React.PropTypes.func.isRequired},componentDidMount:function componentDidMount(){jQuery(".btn").corner('15px');},render:function render(){var buttonStyle={paddingLeft:'15px',paddingRight:'15px',paddingTop:'10px',paddingBottom:'10px'};return React.createElement('div',{className:'modal-footer'},React.createElement('button',{style:buttonStyle,onClick:this.props.onClose,type:'button',className:'btn btn-blue'},'Close'));}});module.exports=MessageFooter;
 
 /***/ }
 /******/ ]);

@@ -5,6 +5,7 @@ const ModalFooterButtons = require('./ModalFooterButtons');
 const SelectField = require('./SelectField');
 const TokenContainer = require('./TokenContainer');
 const ErrorMessage = require('./ErrorMessage');
+const Constant = require('../constants/create_ticket');
 
 
 
@@ -57,7 +58,7 @@ const ModalContent = React.createClass({
       state.currentInboxes = currInstance.inboxes;
       state.currentInbox = currInbox;
       state.currentInbox.defaultAssignee = this.props.formValues.assignee;
-      state.currentInbox.priority_id = this.props.formValues.priority_id;
+      //state.currentInbox.priority_id = this.props.formValues.priority_id;
     } else {
       state.currentInstance = this.props.instances[0];
       state.currentInboxes = this.props.instances[0].inboxes;
@@ -127,7 +128,8 @@ const ModalContent = React.createClass({
                     </div>
                   </div>
                   <input type="hidden" value={this.state.currentInstance.staff_id} name="staff_id" />
-                  <TokenContainer token={this.props.formValues.token} />
+                  <TokenContainer name={Constant.token} token={this.props.formValues[Constant.token]} />
+                  <TokenContainer name={Constant.tokenData} token={this.props.formValues[Constant.tokenData]} />
                   <SelectField onChange={this.setCurrentInstance}
                                label={this.props.labels.instance}
                                options={this.props.instances}
@@ -155,7 +157,7 @@ const ModalContent = React.createClass({
                   <SelectField label={this.props.labels.priority}
                                options={this.props.priorities}
                                name="priority_id"
-                               selectedDefault={this.state.currentInbox.priority_id}
+                               selectedDefault={Object.keys(this.props.formValues).length === 0 ? "3" : this.props.formValues.priority_id}
                   />
 
                   <CustomFieldsContainer isSubmitting={this.state.isSubmitting}
@@ -167,7 +169,7 @@ const ModalContent = React.createClass({
                                       errors={this.state.errors}
                                       subjectDefault={this.props.formValues.subject}
                                       descriptionDefault={this.props.formValues.description}
-                                      notifyCustomerDefault={this.props.formValues.notifyCustomer}
+                                      notifyCustomerDefault={Object.keys(this.props.formValues).length === 0 ? true : this.props.formValues.notifyCustomer}
                   />
 
                 </div>

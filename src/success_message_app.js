@@ -8,5 +8,5 @@ const ReactDOM = require('react-dom');
 const MessageBox = require('./success_message_components/MessageBox');
 
 ReactDOM.render(
-  <MessageBox title={"test title"} message={"test message"} />, document.getElementById('success-message')
+  <MessageBox title={'ll'} message={'ll'} />, document.getElementById('success-message')
 );

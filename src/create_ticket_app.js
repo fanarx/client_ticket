@@ -7,6 +7,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const ModalBox = require('./create_ticket_components/ModalBox');
 window.eventEmitter = new (require('events').EventEmitter);
+const Constant = require('./constants/create_ticket');
 
 
 
@@ -950,8 +951,13 @@ var name = '2Requester';
 
 
 
- window.setToken = function setToken(token) {
-   eventEmitter.emit('tokenChange', token);
+ window.setToken = function setToken(token, tokenData) {
+   var tokenDetails = {
+     [Constant.token]: token,
+     [Constant.tokenData]: tokenData
+   };
+
+   eventEmitter.emit('tokenChange', tokenDetails);
  };
 
 ReactDOM.render(
