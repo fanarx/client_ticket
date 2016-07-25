@@ -37,9 +37,9 @@ select.form-control{
   width: 600px;
   margin: auto;
 }
-.modal-body{
+/*.modal-body{
   min-height: 550px;
-}
+}*/
 
 .popup .modal-body.left-menu{
   background-color: #f6f6f6;
@@ -157,10 +157,10 @@ select.form-control{
   margin-top:5px;
   margin-bottom:5px;
 }
-.modal-450, .modal-450 .modal-body {
+/*.modal-450, .modal-450 .modal-body {
   min-height: 460px !important;
   max-height: 650px;
-}
+}*/
 .textarea-margin {
   margin-top: 10px;
 }
@@ -442,10 +442,91 @@ select.form-control{
 
 .custom-field {
   height: 87px;
+  /*background: gray;*/
+  margin-bottom: 0px;
+}
+
+.custom-field-desc {
+  height: 140px;
+  margin-bottom: 0px;
+}
+
+#app .modal-dialog {
+  position: fixed;
+  top: 30px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+#app .modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#app .modal-body {
+  position: absolute;
+  top: 0px;
+  bottom: 60px;
+  width: 100%;
+  overflow: auto;
+}
+
+/*#app .test-body {
+  position: absolute;
+  top: 50px;
+  bottom: 60px;
+  width: 100%;
+  overflow: auto;
+}*/
+
+#app .modal-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px;
+}
+
+#app .modal-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  padding: 10px;
+  border: 0;
+}
+
+#app .form-content {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 55px;
+}
+
+#app .modal-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  border: 0;
+  background-color: #1677cb;
+  height: 60px;
+  width: 100%;
+  color: #fff;
 }
 
 #success-message .modal-body {
-  min-height: 50px;
+  min-height: 55px;
 }
 
 #success-message .modal-dialog {

@@ -34,11 +34,6 @@ var ModalContentFooter = React.createClass({
   },
 
   render: function () {
-
-    var checkBoxClass = "checkbox-icon " + ((this.state.isSendEmailChecked) ? 'checked' : 'unchecked');
-
-
-
     return (
       <div>
 
@@ -63,7 +58,7 @@ var ModalContentFooter = React.createClass({
 
         <InputFileContainer errors={this.props.errors} />
 
-        <CheckBoxField checked={this.props.notifyCustomerDefault} name="notifyCustomer" label="Send Email Notification to Client" />
+        <CheckBoxField checked={this.props.notifyCustomerDefault} name="notifyCustomer" label={this.props.labels.notify} />
 
       </div>
     );

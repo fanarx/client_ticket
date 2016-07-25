@@ -176,7 +176,7 @@ const ModalContent = React.createClass({
               </div>
             </div>
           </div>
-          <ModalFooterButtons />
+          <ModalFooterButtons labels={this.props.labels} />
         </form>
       </div>
     );

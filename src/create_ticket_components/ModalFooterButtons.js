@@ -1,16 +1,15 @@
 var React = require('react');
 
-function ModalFooterButtons () {
+function ModalFooterButtons ({labels}) {
   return (
     <div className="modal-footer">
-      <button type="submit" className="btn btn-blue button-save">Create</button>
-      <button type="button" className="btn btn-default button-close">Cancel</button>
+      <button type="submit" className="btn btn-blue button-save">{labels.create}</button>
     </div>
   );
 }
 
 ModalFooterButtons.propTypes = {
-
+  labels: React.PropTypes.object.isRequired,
 };
 
 module.exports = ModalFooterButtons;

@@ -9,7 +9,8 @@ const InputFileContainer = React.createClass({
     return {
       inputs: [],
       inputLabels: {},
-      filesSize: 0
+      filesSize: 0,
+      message: ""
     }
   },
 
@@ -35,16 +36,10 @@ const InputFileContainer = React.createClass({
 
       var splitted = e.srcElement.value.split('\\');
       var fileName = splitted[splitted.length - 1];
+      var fileSize = _this.getIE8FileSize(inputId);
 
       if (_this.state.inputs.indexOf(inputId) > -1) {
-        var newState = Object.assign({}, _this.state.inputLabels, {[inputId]: {
-                                                                                fileName,
-                                                                                fileSize: _this.getIE8FileSize(inputId)
-                                                                              }});
-        _this.setState({
-          inputLabels: newState,
-          filesSize: _this.state.filesSize + _this.getIE8FileSize(inputId)
-        });
+        _this.processFile(fileName, inputId, fileSize);
       }
 
     });
@@ -73,7 +68,8 @@ const InputFileContainer = React.createClass({
 
     this.setState({
       inputs: newInputs,
-      filesSize: this.state.filesSize - removeInputSize
+      filesSize: this.state.filesSize - removeInputSize,
+      message: ""
     });
   },
 
@@ -90,15 +86,7 @@ const InputFileContainer = React.createClass({
         fileArray.push(input.files[i].name);
       }
 
-      var newLabels = Object.assign({}, this.state.inputLabels, {[inputId]: {
-                                                                              fileName: fileArray,
-                                                                              fileSize: addedInputSize
-                                                                            }});
-
-      this.setState({
-        inputLabels: newLabels,
-        filesSize: this.state.filesSize + addedInputSize
-      });
+      this.processFile(fileArray, inputId, addedInputSize);
 
     } else {
 
@@ -107,30 +95,33 @@ const InputFileContainer = React.createClass({
       var fileName = splitted[splitted.length - 1];
 
       if (this.state.inputs.indexOf(inputId) > -1) {
-        var newState = Object.assign({}, this.state.inputLabels, {[inputId]: {
-                                                                                fileName: fileName,
-                                                                                fileSize: addedInputSize
-                                                                              }});
-        this.setState({
-          inputLabels: newState,
-          filesSize: this.state.filesSize + addedInputSize
-        });
+        this.processFile(fileName, inputId, addedInputSize);
       }
 
     }
   },
 
-  render: function () {
-
-
-
-    if (this.state.filesSize > 5 * 1024 * 1024) {
-    //if (this.state.filesSize > 50000) {
-      this.props.errors.filesSize = "Upload exceeds 5 mb";
+  processFile: function (inputName, inputId, inputSize) {
+    if (this.state.filesSize + inputSize > 5 * 1024 * 1024) {
+      this.setState({
+        message: "Your files couldn't be uploaded. Files should be less than 5 MB",
+        inputs: this.state.inputs.filter(input => input !== inputId)
+      })
     } else {
-      delete this.props.errors.filesSize;
-    }
+      var newLabels = Object.assign({}, this.state.inputLabels, {[inputId]: {
+        fileName: inputName,
+        fileSize: inputSize
+      }});
 
+      this.setState({
+        inputLabels: newLabels,
+        filesSize: this.state.filesSize + inputSize,
+        message: ""
+      });
+    }
+  },
+
+  render: function () {
     return (
       <div className="col-xs-12">
         <div className="row">
@@ -149,6 +140,7 @@ const InputFileContainer = React.createClass({
             />
           </div>
         </div>
+        <div><span style={{color: '#b94a48'}}>{this.state.message}</span></div>
       </div>
     );
   }
