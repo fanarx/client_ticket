@@ -21,6 +21,21 @@ var Modal = React.createClass({
 
   componentDidMount: function () {
     jQuery(".btn-blue").corner('15px');
+
+
+    function onResize(){
+      var calculatedModalBodyHeight = $( window ).height() - 70;
+      if(calculatedModalBodyHeight < 490){
+        calculatedModalBodyHeight = 490;
+      }
+      $('#search-grid .modal-body').css( 'height',  calculatedModalBodyHeight+ 'px' );
+
+      var gridSize = calculatedModalBodyHeight - $('#search-grid .filter-place').height() - $('#search-grid .staff-grid-header').height() - 30;
+
+      $('#search-grid .staff-table').height(gridSize);
+    }
+    $( window ).resize(onResize);
+    onResize();
   },
 
   render: function () {
@@ -31,8 +46,6 @@ var Modal = React.createClass({
             <ModalHeader translations={this.props.translations} />
 
             <ModalBody columns={this.props.columns} dataSource={ this.props.dataSource } />
-
-            <ModalFooter translations={this.props.translations} />
           </div>
         </div>
       </div>

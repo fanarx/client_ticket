@@ -62,7 +62,8 @@ var columns = [
     filterType: 'textbox',
     colSize: dataSource.showInstances() ? 2 : 3,
     contentField: 'subject',
-    title: translations.subject
+    title: translations.subject,
+    disableAutocomplete: true
   }
 ];
 if(dataSource.showInstances()){

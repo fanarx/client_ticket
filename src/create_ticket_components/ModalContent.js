@@ -119,11 +119,11 @@ const ModalContent = React.createClass({
         <form action={this.props.formAction}  method="POST" ref="ticket-form" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
           <div ref="modal-body" className="modal-body scrollbar-macosx scrollbar-popup">
             <div className="row nomargin">
-              <div className="col-md-12">
+              <div className="col-xs-12">
                 <div className="row">
                   <div className="col-xs-6" >
                     <div className="form-group">
-                      <label>Requester</label>
+                      <label>{this.props.labels.requester}</label>
                       <p><b>{this.props.requester.name}</b></p>
                     </div>
                   </div>

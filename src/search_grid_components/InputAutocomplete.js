@@ -39,6 +39,7 @@ var InputAutocomplete = React.createClass({
     toOpen = toOpen || false;
     if(toOpen && value){
       this.setState({opened: true});
+      this.setState({active: 0});
     }else{
       this.setState({opened: false});
     }
@@ -76,6 +77,12 @@ var InputAutocomplete = React.createClass({
 
   filterList: function(options){
     var limit = 0;
+
+    var search = this.state.search;
+    if(search){
+      search = search.toLowerCase();
+    }
+
     return options.filter(function (option) {
       if(limit > 10){
         return false;
@@ -86,12 +93,7 @@ var InputAutocomplete = React.createClass({
         option = option.toLowerCase();
       }
 
-      var search = this.state.search;
-      if(this.state.search){
-        search = this.state.search.toLowerCase();
-      }
-
-      if(option.indexOf(this.state.search) === -1){
+      if(option.indexOf(search) === -1){
         found = false;
       }
 

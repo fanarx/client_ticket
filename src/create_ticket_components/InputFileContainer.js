@@ -15,7 +15,8 @@ const InputFileContainer = React.createClass({
   },
 
   propTypes: {
-    errors: React.PropTypes.object.isRequired
+    errors: React.PropTypes.object.isRequired,
+    errorMessage: React.PropTypes.string.isRequired
   },
 
   getIE8FileSize: function (inputId) {
@@ -23,6 +24,7 @@ const InputFileContainer = React.createClass({
     var filePath = $("#" + inputId)[0].value;
 
     var objFile = objFSO.getFile(filePath);
+    debugger;
     var fileSize = objFile.size; //size in kb
 
     return fileSize;
@@ -104,7 +106,7 @@ const InputFileContainer = React.createClass({
   processFile: function (inputName, inputId, inputSize) {
     if (this.state.filesSize + inputSize > 5 * 1024 * 1024) {
       this.setState({
-        message: "Your files couldn't be uploaded. Files should be less than 5 MB",
+        message: this.props.errorMessage,
         inputs: this.state.inputs.filter(input => input !== inputId)
       })
     } else {
@@ -125,12 +127,12 @@ const InputFileContainer = React.createClass({
     return (
       <div className="col-xs-12">
         <div className="row">
-          <div className="col-xs-1">
+          <div className="attachment-button">
             <div className="reply-attachment" style={{paddingBottom: '15px', paddingTop: '10px'}}>
               <button type="button" onClick={this.addInput} className="btn btn-white btn-reply-attachment"></button>
             </div>
           </div>
-          <div className="col-xs-11">
+          <div className="input-list">
             <InputList ref="input-list"
                        inputs={this.state.inputs}
                        inputLabels={this.state.inputLabels}

@@ -56,7 +56,7 @@ var ModalContentFooter = React.createClass({
                     val={this.props.descriptionDefault}
         />
 
-        <InputFileContainer errors={this.props.errors} />
+        <InputFileContainer errors={this.props.errors} errorMessage={this.props.labels.uploadError}/>
 
         <CheckBoxField checked={this.props.notifyCustomerDefault} name="notifyCustomer" label={this.props.labels.notify} />
 

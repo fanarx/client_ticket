@@ -9,6 +9,7 @@ var Grid = React.createClass({
   },
 
   isFilterFound: function (ticket, filter) {
+    ticket += '';
     return ticket.toLowerCase().indexOf(filter.toLowerCase()) === -1;
   },
 

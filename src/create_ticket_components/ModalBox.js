@@ -6,11 +6,10 @@ const ModalContent = require('./ModalContent');
 function ModalBox ({title, instances, requester, priorities, labels, errorMessage, formAction, formValues}) {
   return (
     <div>
-      <div className="modal-title">{title}</div>
+      <ModalHeader title={title} />
       <div className="modal-dialog">
         <div className="modal-content">
           <div id="ticket-create" className="popup ticket-create">
-            {/*<ModalHeader title={title} />*/}
             <ModalContent formAction={formAction}
                           formValues={formValues}
                           labels={labels}

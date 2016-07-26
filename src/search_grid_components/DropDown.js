@@ -17,6 +17,11 @@ var DropDown = React.createClass({
 
   resetDropdown: function (e) {
 
+    if(($(e.target).hasClass('dropdown-toggle') || $(e.target).parent(".dropdown-toggle").length) && !$(e.target).parents("."+this.state.fieldName).length){
+      this.setState({opened: false});
+      return;
+    }
+
     var openerBtnNotClicked = !$(e.target).hasClass('dropdown-toggle') && !$(e.target).parent(".dropdown-toggle").length;
     var dropDwonElementNotClicked = !$(e.target).hasClass('dropdown-element') && !$(e.target).parent(".dropdown-element").length;
 
@@ -28,6 +33,7 @@ var DropDown = React.createClass({
   getInitialState: function () {
     var state = {
       opened: false,
+      fieldName: this.props.field,
     };
     state.selectedItems = [];
     return state;
@@ -52,10 +58,10 @@ var DropDown = React.createClass({
     var options = this.props.options;
 
     return (
-      <div className="filter-item">
+      <div className={'filter-item ' + this.state.fieldName}>
         <div className="multiple-filter-select">
           <div className="btn-group">
-            <OpenerBtn onClick={this.toggleButton} selecteds={this.state.selectedItems}> </OpenerBtn>
+            <OpenerBtn onClick={this.toggleButton} options={options} selecteds={this.state.selectedItems}> </OpenerBtn>
             <DropList handleItemClick={this.itemClick} selecteds={this.state.selectedItems}
                       options={this.props.options} opened={this.state.opened}></DropList>
           </div>

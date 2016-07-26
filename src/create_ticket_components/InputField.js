@@ -93,8 +93,8 @@ const InputField = React.createClass({
     var formClass = "form-group ";
     formClass += (this.props.name === 'description') ? "custom-field-desc " : "custom-field ";
     var inputSizeClass = this.props.size === 'md' ? "col-xs-12" : "col-xs-6";
-    var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control"  name={this.props.name} value={this.state.inputVal}></textarea>)
-                                        : (<input onBlur={this.handleInput} onChange={this.handleInput} className="form-control" name={this.props.name} value={this.state.inputVal} />);
+    var inputType = this.props.type === 'textarea' ? (<textarea onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.name}  name={this.props.name} value={this.state.inputVal}></textarea>)
+                                        : (<input onBlur={this.handleInput} onChange={this.handleInput} className="form-control" id={this.props.name} name={this.props.name} value={this.state.inputVal} />);
     var requiredSpan = (this.props.required == 1) ? (<span>*</span>) : "";
 
     if (this.state.isFieldTouched) {
@@ -120,7 +120,7 @@ const InputField = React.createClass({
     return (
       <div className={inputSizeClass} >
         <div className={formClass}>
-          <label htmlFor={this.props.label} >{this.props.label}</label>
+          <label htmlFor={this.props.name} >{this.props.label}</label>
           {requiredSpan}
           {inputType}
           <span style={{color: '#b94a48'}}>{this.props.errors[this.props.label]}</span>

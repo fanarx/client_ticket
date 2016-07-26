@@ -32,11 +32,11 @@ select.form-control{
 
 
 /* modal body */
-.modal-dialog{
+/*.modal-dialog{
   min-width: 600px;
   width: 600px;
   margin: auto;
-}
+}*/
 /*.modal-body{
   min-height: 550px;
 }*/
@@ -452,8 +452,9 @@ select.form-control{
 }
 
 #app .modal-dialog {
-  position: fixed;
-  top: 30px;
+  position: absolute;
+  min-width: 600px;
+  top: 0px;
   margin: 0;
   width: 100%;
   height: 100%;
@@ -462,7 +463,7 @@ select.form-control{
 
 #app .modal-content {
   position: absolute;
-  top: 0;
+  top: 60px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -495,12 +496,15 @@ select.form-control{
   padding: 10px;
 }
 
-#app .modal-header {
+#app .modal-custom-header {
   position: absolute;
+  min-width: 600px;
   top: 0;
   right: 0;
   left: 0;
-  height: 50px;
+  background-color: #1677cb;
+  height: 60px;
+  color: #fff;
   padding: 10px;
   border: 0;
 }
@@ -525,6 +529,10 @@ select.form-control{
   color: #fff;
 }
 
+.row.nomargin {
+  padding-top: 10px;
+}
+
 #success-message .modal-body {
   min-height: 55px;
 }
@@ -532,4 +540,17 @@ select.form-control{
 #success-message .modal-dialog {
   min-width: 100px;
   width: auto;
+}
+
+.attachment-button, .input-list {
+  float: left;
+}
+
+.attachment-button {
+  /*background: red;*/
+  margin-left: 15px;
+}
+
+.input-list {
+  /*background: yellow;*/
 }
