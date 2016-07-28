@@ -144,6 +144,7 @@ img, span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+  width: 85%;
 }
 
 .grid-col-header {

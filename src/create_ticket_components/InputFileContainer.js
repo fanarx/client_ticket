@@ -24,7 +24,6 @@ const InputFileContainer = React.createClass({
     var filePath = $("#" + inputId)[0].value;
 
     var objFile = objFSO.getFile(filePath);
-    debugger;
     var fileSize = objFile.size; //size in kb
 
     return fileSize;
