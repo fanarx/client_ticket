@@ -33,10 +33,17 @@ img, span {
 #search-grid .grid{
   background-color: #fbfbf8;
 }
-.modal-fluid {
-  width: 100% ;
+#search-grid .modal-fluid {
   margin: 0;
+  width: 100%;
   min-width: 1020px;
+  height: 100%;
+  min-height: 550px;
+}
+
+#search-grid .modal-content{
+  height: inherit;
+  position: relative;
 }
 
 /*---------MODAL Header-----------------*/
@@ -58,17 +65,20 @@ img, span {
 /*---------MODAL body-----------------*/
 #search-grid .modal-body{
   overflow: hidden;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
+  /*height: calc(100% - 50px);*/
+  position: relative;
 }
 .grid-full-height {
-  height: calc(100% - 135px);
+  height: 100%;
+  position: relative;
 }
 
 
 /*filter row*/
 .filter-place {
-  float: left;
-  margin: 10px 0 3px 0px;
+  /*float: left;*/
+  padding: 10px 0 3px 0px;
   width: 100%;
 }
 .filter-item {
@@ -134,6 +144,7 @@ img, span {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+  width: 85%;
 }
 
 .grid-col-header {
@@ -166,7 +177,7 @@ img, span {
   margin-bottom: 0px;
   margin-right: 0px;
   max-height: 100%;
-  height: 335px;
+  height: 90%;
 }
 
 .grid-cell, .grid-row, .grid-cell .grid-helper {
@@ -185,6 +196,10 @@ img, span {
   overflow: hidden;
   word-break: break-all;
 }
+.grid-col-item.status, .grid-col-item.priority {
+  word-break: normal;
+}
+
 .grid-staff-name {
   padding: 0 0 0 15px;
   font-size: 16px;

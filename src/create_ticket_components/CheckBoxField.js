@@ -33,7 +33,7 @@ const CheckBoxField = React.createClass({
     var checkBoxClass = "checkbox-icon " + ((this.state.isChecked) ? 'checked' : 'unchecked');
 
     return (
-      <div className="col-md-12">
+      <div className="col-xs-12">
         <div id="check-tick" onClick={this.handleClick} className={checkBoxClass}></div>
         <input onChange={this.handleChange} name={this.props.name} ref={(c) => this._checkbox = c} className="checkbox-input" type="checkbox" checked={this.state.isChecked} />
         <label onClick={this.handleClick}>Send Email Notification to Client</label>

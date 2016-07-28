@@ -94,6 +94,124 @@ const ModalContent = React.createClass({
     })
   },
 
+  onTicketCreate: function () {
+
+    var url = this.props.formAction;
+
+    function getFilesFromInputs(inputs, cb) {
+      let fileArray = [];
+      console.log('initial inputSize: ', inputs.length);
+
+
+      inputs.forEach((input, idx) => {
+        for (let i = 0; i < input.files.length; ++i) {
+
+          let file = input.files[0];
+
+
+          let reader = new FileReader();
+
+          reader.readAsDataURL(file);
+
+
+          reader.onloadend = () => {
+              fileArray.push({
+                data: reader.result,
+                name: file.name,
+                size: file.size,
+                type: file.type
+              });
+
+            if (idx === inputs.length - 1 && i === input.files.length - 1) {
+              cb(fileArray);
+            }
+          };
+        }
+
+      });
+    }
+
+    function extractCustomFieldKey(customField) {
+      return customField.match(/\[(.*?)\]/)[1];
+    }
+
+    function sendData(data, url) {
+
+      return (
+        $.ajax({
+          url: url + '&ajax=true',
+          //contentType: 'application/json',
+          data: data,
+          type: 'POST'
+      })
+      )
+    }
+
+    function handleSend(data, url) {
+      sendData(data, url)
+           .done((data) => {
+             console.log('data', data);
+           })
+           .fail((data) => {
+             console.log('data', data);
+           })
+    }
+
+
+    let formData = $(this._form).serializeArray();
+
+    let inputValues = formData
+                        .filter(data => data.name.indexOf('multiFilesUpload') > -1)
+                        .filter(file => file.value !== "")
+                        .map(file => file.value);
+
+    let customFields = formData
+                        .filter(data => data.name.indexOf('customFields') > -1)
+                        .reduce((prev, curr) => {
+                          prev[extractCustomFieldKey(curr.name)] = curr.value;
+                          return prev;
+                        }, {});
+
+    let mainFields = formData
+                       .filter(data => data.name.indexOf('multiFilesUpload') === -1)
+                       .filter(data => data.name.indexOf('customFields') === -1)
+                       .reduce((prev, curr) => {
+                              prev[curr.name] = curr.value;
+                              return prev;
+                        }, {});
+
+
+
+
+    let inputs = $('input[type="file"]').filter((idx, file) => inputValues[file.value] !== "");
+
+
+    if (inputs.length > 0) {
+      if (window.File && window.FileList && window.FileReader) {
+        getFilesFromInputs(inputs.toArray(), (files) => {
+          let data = Object.assign({}, mainFields, {
+            multiFilesUpload: files,
+            customFields: customFields
+          });
+          handleSend(data, url);
+        });
+      } else {
+        //debugger;
+        this._form.submit();
+      }
+
+    } else {
+      let data = Object.assign({}, mainFields, {
+        customFields: customFields
+      });
+
+      handleSend(data, url);
+
+    }
+
+
+  },
+
   componentDidMount: function () {
     //console.log('MOUNTEDDDDDD', $.fn.jquery);
     jQuery(this.refs['modal-body']).scrollbar();
@@ -107,7 +225,8 @@ const ModalContent = React.createClass({
       isSubmitting: true
     }, function () {
       if (Object.keys(this.state.errors).length === 0) {
-        this.refs['ticket-form'].submit();
+        //this.refs['ticket-form'].submit();
+        this.onTicketCreate();
       }
     });
   },
@@ -116,14 +235,14 @@ const ModalContent = React.createClass({
     return (
       <div>
         {this.props.errorMessage && <ErrorMessage errors={this.props.errorMessage} />}
-        <form action={this.props.formAction}  method="POST" ref="ticket-form" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
+        <form ref={(c) => this._form = c} action={this.props.formAction}  method="POST" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
           <div ref="modal-body" className="modal-body scrollbar-macosx scrollbar-popup">
             <div className="row nomargin">
-              <div className="col-md-12">
+              <div className="col-xs-12">
                 <div className="row">
                   <div className="col-xs-6" >
                     <div className="form-group">
-                      <label>Requester</label>
+                      <label>{this.props.labels.requester}</label>
                       <p><b>{this.props.requester.name}</b></p>
                     </div>
                   </div>
@@ -176,7 +295,7 @@ const ModalContent = React.createClass({
               </div>
             </div>
           </div>
-          <ModalFooterButtons />
+          <ModalFooterButtons isDisabled={this.state.isSubmitting} labels={this.props.labels} />
         </form>
       </div>
     );

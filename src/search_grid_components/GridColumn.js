@@ -22,7 +22,7 @@ var GridColumn = React.createClass({
 
     return (
       <div data-id={this.props.id} className={mainClassName}>
-        <div className="grid-col-item">
+        <div className={'grid-col-item '+ this.props.field } >
           <div className="grid-staff-name pull-left">{content}</div>
         </div>
       </div>

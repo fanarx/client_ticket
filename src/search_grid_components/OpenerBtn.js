@@ -13,7 +13,16 @@ var OpenerBtn = React.createClass({
 
   render: function () {
     var selectedItems = this.props.selecteds;
-    var buttonText = selectedItems.length ? selectedItems.length + (' ' + this.context.translations.selected) : this.context.translations.all;
+
+    var buttonText = this.context.translations.all;
+    if(selectedItems.length ){
+      if(selectedItems.length == this.props.options.length){
+        buttonText = this.context.translations.all;
+      }else{
+        buttonText = selectedItems.length + (' ' + this.context.translations.selected);
+      }
+    }
+
     return (
       <button type="button" onClick={this.props.onClick} className="btn btn-default dropdown-toggle">
         {buttonText} <span className="caret"></span>

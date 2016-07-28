@@ -18,6 +18,7 @@ var FilterRow = React.createClass({
                       options={column.options ? column.options : this.props.dataSource.getListByField(column.field) }
                       colSize={column.colSize}
                       field={column.field}
+                      disableAutocomplete={column.disableAutocomplete}
                       type={column.filterType}/>);
     }.bind(this));
 
