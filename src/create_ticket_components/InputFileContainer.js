@@ -7,7 +7,7 @@ const InputFileContainer = React.createClass({
 
   getInitialState: function () {
     return {
-      inputs: [],
+      inputs: [`input-${newId()}`],
       inputLabels: {},
       filesSize: 0,
       message: ""
@@ -55,9 +55,7 @@ const InputFileContainer = React.createClass({
       var input = ReactDOM.findDOMNode(this.refs['input-list'].refs[newInput]);
 
       this.onIE8Change(input);
-
-      input.click();
-
+    
     });
   },
 
@@ -133,7 +131,7 @@ const InputFileContainer = React.createClass({
         <div className="row">
           <div className="attachment-button">
             <div className="reply-attachment" style={{paddingBottom: '15px', paddingTop: '10px'}}>
-              <button type="button" onClick={this.addInput} className="btn btn-white btn-reply-attachment"></button>
+              <label onClick={this.addInput} htmlFor={this.state.inputs[this.state.inputs.length - 1]}  className="btn btn-white btn-reply-attachment"></label>
             </div>
           </div>
           <div className="input-list">
