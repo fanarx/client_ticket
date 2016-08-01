@@ -1,4 +1,5 @@
 var React = require('react');
+const ReactDOM = require('react-dom');
 const CustomFieldsContainer = require('./CustomFieldsContainer');
 const ModalContentFooter = require('./ModalContentFooter');
 const ModalFooterButtons = require('./ModalFooterButtons');
@@ -100,8 +101,6 @@ const ModalContent = React.createClass({
 
     function getFilesFromInputs(inputs, cb) {
       let fileArray = [];
-      console.log('initial inputSize: ', inputs.length);
-
 
       inputs.forEach((input, idx) => {
         for (let i = 0; i < input.files.length; ++i) {
@@ -147,16 +146,33 @@ const ModalContent = React.createClass({
       )
     }
 
+
+    function closeWindow(data, url){
+      return (
+          $.ajax({
+            url: url,
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            type: 'POST'
+          })
+      )
+    }
+
     function handleSend(data, url) {
       sendData(data, url)
            .done((data) => {
-             console.log('data', data);
+             console.log('success');
+             if (data.errorMessage) {
+               $(".scroll-content").scrollTop(0);
+               ReactDOM.render(<ErrorMessage errors={data.errorMessage} />, document.getElementById('error-message-block'));
+             } else {
+               closeWindow(data.data, data.closeWindowURL);
+             }
            })
            .fail((data) => {
-             console.log('data', data);
+             console.log('error data', data);
            })
     }
-
 
     let formData = $(this._form).serializeArray();
 
@@ -196,7 +212,6 @@ const ModalContent = React.createClass({
           handleSend(data, url);
         });
       } else {
-        //debugger;
         this._form.submit();
       }
 
@@ -234,9 +249,11 @@ const ModalContent = React.createClass({
   render: function () {
     return (
       <div>
-        {this.props.errorMessage && <ErrorMessage errors={this.props.errorMessage} />}
-        <form ref={(c) => this._form = c} action={this.props.formAction}  method="POST" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
+        <form id="create-ticket-form" ref={(c) => this._form = c} action={this.props.formAction}  method="POST" name="createTicket" onSubmit={this.onFormSubmit} encType="multipart/form-data">
           <div ref="modal-body" className="modal-body scrollbar-macosx scrollbar-popup">
+            <div id="error-message-block">
+              {this.props.errorMessage && <ErrorMessage errors={this.props.errorMessage} />}
+            </div>
             <div className="row nomargin">
               <div className="col-xs-12">
                 <div className="row">
@@ -295,7 +312,7 @@ const ModalContent = React.createClass({
               </div>
             </div>
           </div>
-          <ModalFooterButtons isDisabled={this.state.isSubmitting} labels={this.props.labels} />
+          <ModalFooterButtons labels={this.props.labels} />
         </form>
       </div>
     );

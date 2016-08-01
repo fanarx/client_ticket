@@ -10,7 +10,7 @@ function ModalFooterButtons ({isDisabled, labels}) {
 
 ModalFooterButtons.propTypes = {
   labels: React.PropTypes.object.isRequired,
-  isDisabled: React.PropTypes.bool.isRequired
+  isDisabled: React.PropTypes.bool
 };
 
 module.exports = ModalFooterButtons;

@@ -92,7 +92,12 @@ const InputFileContainer = React.createClass({
     } else {
 
       var splitted = e.target.value.split('\\');
-      addedInputSize += e.target.files[0].size;
+      if (!e.target.files) {
+        addedInputSize += this.getIE8FileSize(inputId);
+      } else {
+        addedInputSize += e.target.files[0].size;
+      }
+
       var fileName = splitted[splitted.length - 1];
 
       if (this.state.inputs.indexOf(inputId) > -1) {
